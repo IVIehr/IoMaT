@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
+import Offer from "./Offer";
 import Products from "./Products";
 
 function Home() {
@@ -11,7 +12,7 @@ function Home() {
             src="/assets/banner.jpg"
             className="card-img opacity-50"
             alt="Background"
-            height="450px"
+            height="400px"
           />
           <div className="card-img-overlay d-flex hero-header flex-column justify-content-center">
             <div className="container text-center">
@@ -20,6 +21,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Offer/>
       <Products />
       <Footer/>
     </div>
