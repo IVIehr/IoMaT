@@ -63,10 +63,6 @@ function Navbar() {
                         ? userState?.state?.displayName
                         : userState?.state?.email}
                     </div>
-
-                    <NavLink to="/orders" className="btn btn-outline-dark ms-2">
-                      سفارش ها
-                    </NavLink>
                     <button
                       type="button"
                       className="btn btn-outline-dark ms-2"
