@@ -50,12 +50,7 @@ function Navbar() {
               </li>
               <li className="nav-item dark-text">
                 <NavLink className="nav-link" to="/about">
-                  درباره ما
-                </NavLink>
-              </li>
-              <li className="nav-item dark-text">
-                <NavLink className="nav-link" to="/contact">
-                  تماس با ما
+                  تدریس در فرادرس
                 </NavLink>
               </li>
             </ul>
