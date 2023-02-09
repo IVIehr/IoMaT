@@ -9,7 +9,7 @@ function Teaching() {
 
   const proceedTeaching = () => {
     if (userState !== null) {
-      navigate("/contact");
+      navigate("/cooperation");
     } else {
       toast("لطفا ابتدا وارد شوید");
     }
