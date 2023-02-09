@@ -13,7 +13,7 @@ function Cooperation() {
         <div className="row">
           <div className="col-md-6">
             <form
-              action="mailto: ozgecoskun_3@hotmail.com"
+              action="mailto: mehr910093@gmail.com"
               method="post"
               enctype="text/plain"
             >
@@ -46,7 +46,6 @@ function Cooperation() {
                   توضیحات
                 </label>
                 <textarea
-                  required
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows="5"
