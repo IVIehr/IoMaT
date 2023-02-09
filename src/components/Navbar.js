@@ -49,7 +49,7 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item dark-text">
-                <NavLink className="nav-link" to="/about">
+                <NavLink className="nav-link" to="/teaching">
                   تدریس در فرادرس
                 </NavLink>
               </li>
