@@ -60,7 +60,6 @@ function Checkout() {
 
         setProcessing(false);
         setSucceeded(true);
-        navigate("/orders");
         dispatch({
           type: "EMPTYCART",
         });
