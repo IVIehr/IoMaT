@@ -84,19 +84,16 @@
   background: #f2f2f2;
 }
 
-.deal_ofthe_week_img img {
-  height: 300px;
-}
 .deal_ofthe_week_content {
   height: 100%;
 }
 .timer li {
-  display: inline-block;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   background: #ffffff;
   margin-right: 10px;
+  margin-top: 10px;
 }
 .timer li:last-child {
   margin-right: 0px;
