@@ -34,7 +34,7 @@ function Teaching() {
             </p>
             <button
             onClick={proceedTeaching}
-            className="btn btn-dark mb-5 mx-auto"
+            className="btn btn-dark mt-4 mx-auto"
           >
             انتشار آموزش را شروع کنید
           </button>

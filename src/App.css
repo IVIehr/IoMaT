@@ -95,9 +95,6 @@
   margin-right: 10px;
   margin-top: 10px;
 }
-.timer li:last-child {
-  margin-right: 0px;
-}
 .timer_num {
   font-size: 48px;
   font-weight: 600;
@@ -134,10 +131,6 @@ footer.footer {
   margin-right: 45px;
 }
 
-.footer_nav li:last-child {
-  margin-right: 0px;
-}
-
 .footer_nav li a,
 .cr {
   font-size: 14px;
@@ -165,10 +158,6 @@ footer.footer {
   margin-right: 10px;
 }
 
-.footer_social ul li:last-child {
-  margin-right: 0px;
-}
-
 .footer_social ul li a {
   color: #51545f;
   -webkit-transition: all 300ms ease;
@@ -177,10 +166,6 @@ footer.footer {
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
   padding: 10px;
-}
-
-.footer_social ul li:last-child a {
-  padding-right: 0px;
 }
 
 .footer_social ul li a:hover {

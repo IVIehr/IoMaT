@@ -12,7 +12,7 @@ function Footer(props) {
                   <a href="#">تماس با ما</a>
                 </li>
                 <li>
-                  <a href="#">همکاری</a>
+                  <a href="/teaching">همکاری</a>
                 </li>
                 <li>
                   <a href="#">مجله فرادرس</a>

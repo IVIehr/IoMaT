@@ -93,17 +93,11 @@ class Offer extends Component {
             </div>
               <div className="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
                 <ul className="timer">
-                  <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="day" className="timer_num">
-                      {this.addLeadingZeros(countDown.days)}{" "}
+                <li className="d-inline-flex flex-column justify-content-center align-items-center">
+                    <div id="second" className="timer_num">
+                      {this.addLeadingZeros(countDown.sec)}
                     </div>
-                    <div className="timer_unit">روز</div>
-                  </li>
-                  <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="hour" className="timer_num">
-                      {this.addLeadingZeros(countDown.hours)}
-                    </div>
-                    <div className="timer_unit">ساعت</div>
+                    <div className="timer_unit">ثانیه</div>
                   </li>
                   <li className="d-inline-flex flex-column justify-content-center align-items-center">
                     <div id="minute" className="timer_num">
@@ -112,10 +106,16 @@ class Offer extends Component {
                     <div className="timer_unit">دقیقه</div>
                   </li>
                   <li className="d-inline-flex flex-column justify-content-center align-items-center">
-                    <div id="second" className="timer_num">
-                      {this.addLeadingZeros(countDown.sec)}
+                    <div id="hour" className="timer_num">
+                      {this.addLeadingZeros(countDown.hours)}
                     </div>
-                    <div className="timer_unit">ثانیه</div>
+                    <div className="timer_unit">ساعت</div>
+                  </li>
+                  <li className="d-inline-flex flex-column justify-content-center align-items-center">
+                    <div id="day" className="timer_num">
+                      {this.addLeadingZeros(countDown.days)}{" "}
+                    </div>
+                    <div className="timer_unit">روز</div>
                   </li>
                 </ul>
                 <div className="deal_ofthe_week_button btn btn-primary my-4">
