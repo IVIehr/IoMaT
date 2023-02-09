@@ -22,17 +22,8 @@
   object-fit: cover;
 }
 
-.hero-header{
-  margin-left: 40%;
-  margin-bottom: 10%;
-}
-
 .fa-star{
   color: gold;
-}
-
-.login-header{
-  font-size: 24px;
 }
 
 .modal-content{

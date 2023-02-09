@@ -20,7 +20,7 @@ function Teaching() {
         <div className="row">
         <div className="col-md-6 d-flex justify-content-center">
             <img
-              src="assets/about.png"
+              src="assets/teach.png"
               alt="About Us"
               height="400px"
               width="400px"
