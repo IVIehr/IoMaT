@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./Footer";
 import Offer from "./Offer";
 import Products from "./Products";
 
@@ -23,7 +22,6 @@ function Home() {
       </div>
       <Offer/>
       <Products />
-      <Footer/>
     </div>
   );
 }
