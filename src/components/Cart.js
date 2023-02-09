@@ -82,8 +82,8 @@ function Cart() {
 
   return (
     <>
-      {state.length === 0 && emptyCart()}
       <h5 className="mt-5 mx-5 text-end">ثبت سفارش</h5>
+      {state.length === 0 && emptyCart()}
       {state.length !== 0 && state.map(cartItems)}
       {state.length !== 0 && checkoutButton()}
     </>
