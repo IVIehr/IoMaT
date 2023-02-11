@@ -3,11 +3,13 @@ import { auth, provider } from "../firebase";
 import { useDispatch } from "react-redux";
 import { signIn } from "../redux/action";
 import { useNavigate } from "react-router-dom";
+import Modal from "../modal/Modal";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,6 +38,14 @@ function Login() {
 
   const setUser = (user) => {
     dispatch(signIn(user));
+  };
+
+  const showModal = () => {
+    setShow(true);
+  };
+
+  const hideModal = () => {
+    setShow(false);
   };
 
   return (
@@ -110,8 +120,9 @@ function Login() {
                     id="exampleCheck1"
                     required
                   />
+                  <Modal show={show} handleClose={hideModal}/>
                   <label className="form-check-label" htmlFor="exampleCheck1">
-                    با شرایط و ضوابط موافقت می نمایم
+                    با <a href="#" onClick={showModal}>شرایط و ضوابط</a> موافقت می نمایم
                   </label>
                 </div>
                 <button type="submit" className="btn btn-dark w-100 mt-5 mb-3">
