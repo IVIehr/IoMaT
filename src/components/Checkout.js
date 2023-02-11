@@ -8,70 +8,11 @@ import db from "../firebase";
 
 function Checkout() {
   const state = useSelector((state) => state.handleCart);
-  const userState = useSelector((userState) => userState.handleUser);
-  const { error, setError } = useState(null);
-  const { disabled, setDisabled } = useState(true);
-  const [succeeded, setSucceeded] = useState(false);
-  const [processing, setProcessing] = useState("");
-  const [clientSecret, setClientSecret] = useState(true);
 
-  const stripe = useStripe();
-  //useElements: pass the payment information collected by the Payment Element to the Stripe API,
-  const elements = useElements();
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // generate the special stripe secret which allows us to charge a customer
-    const getClientSecret = async () => {
-      const response = await axios({
-        method: "post",
-        // Stripe expects the total in a currencies subunits
-        url: `/payments/create?total=${getBasketTotal(state) * 100}`,
-      });
-      setClientSecret(response.data.clientSecret);
-    };
-
-    getClientSecret();
-  }, [state]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setProcessing(true);
-    const payload = await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          // CardElement:	A flexible single-line input that collects all necessary card details.
-          card: elements.getElement(CardElement),
-        },
-      })
-      .then(({ paymentIntent }) => {
-        //paymentIntent = payment confirmation
-        db.collection("users")
-          .doc(userState?.state._delegate.uid)
-          .collection("orders")
-          .doc(paymentIntent.id)
-          .set({
-            basket: state,
-            amount: paymentIntent.amount,
-            created: paymentIntent.created,
-          });
-
-        setProcessing(false);
-        setSucceeded(true);
-        dispatch({
-          type: "EMPTYCART",
-        });
-      })
-      .catch((error) => {
-        setError(error.response);
-      });
-  };
-
-  const handleChange = (event) => {
-    setDisabled(event.empty);
-    setError(event.error ? event.error.message : "");
+    alert("اتصال به بانک")
   };
 
   var total = 0;
@@ -110,25 +51,53 @@ function Checkout() {
           <div className="col-md-7 col-lg-8">
             <div className="needs-validation" noValidate="">
               <h4 className="mb-3">پرداخت آنلاین</h4>
-
-              {/* stripe */}
               <form onSubmit={handleSubmit}>
-                <CardElement
-                  onChange={handleChange}
-                  className="form-control p-3 mb-5 mt-5"
-                />
-                <div className="payment-priceContainer">
-                  <hr className="my-4" />
-                  <button
-                    className="w-100 btn btn-primary btn-lg p-1 d-flex align-items-center justify-content-center"
-                    disabled={processing || disabled || succeeded}
-                  >
-                    <span>{processing ? <p>در حال پردازش</p> : "ادامه"}</span>
-                  </button>
+                <div className="mb-3">
+                  <label for="exampleForm" className="form-label">
+                    آدرس
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="exampleForm"
+                  />
                 </div>
-                {/* Errors */}
-                {error && <div>{error}</div>}
-              </form>
+                <div className="mb-3">
+                <label for="exampleForm" className="form-label">
+                      کد پستی
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="exampleForm"
+                    />
+                </div>
+                <div className="mb-3">
+                  <label for="exampleFormControlInput1" className="form-label">
+                    شماره تلفن
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="exampleFormControlInput1"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" className="form-label">
+                    توضیحات
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <button type="submit" className="btn btn-dark w-100">
+                  ادامه
+                </button>
+            </form>
             </div>
           </div>
         </div>
