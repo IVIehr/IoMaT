@@ -13,6 +13,7 @@ function Product() {
     dispatch(addCart(product));
   };
 
+  // Fetch data from API
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);
@@ -23,6 +24,7 @@ function Product() {
     getProduct();
   }, []);
 
+  // State of not loading the data => show the skeleton
   const Loading = () => {
     return (
       <>

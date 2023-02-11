@@ -13,6 +13,7 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Authentication
   const handleAuth = () => {
     auth
       .signInWithPopup(provider)
@@ -24,6 +25,7 @@ function Login() {
       });
   };
 
+  // Equal to post data to server
   const login = (e) => {
     e.preventDefault();
     auth

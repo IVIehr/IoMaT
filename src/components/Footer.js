@@ -1,6 +1,6 @@
 import React from "react";
 
-function Footer(props) {
+function Footer() {
   return (
     <footer className="footer">
       <div className="container">
@@ -23,6 +23,7 @@ function Footer(props) {
               </ul>
             </div>
           </div>
+          {/* Social links */}
           <div className="col-lg-6">
             <div className="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
               <ul>

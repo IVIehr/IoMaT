@@ -16,6 +16,7 @@ function Cart() {
     dispatch(deleteCart(item));
   };
 
+  // Check authentication of user
   const proceedCheckout = () => {
     if (userState !== null) {
       navigate("/checkout");
@@ -24,6 +25,7 @@ function Cart() {
     }
   };
 
+  // Show each item in the cart
   const cartItems = (product) => {
     return (
       <div key={product.id} className="px-4 my-5 bg-light rounded-3 ">
@@ -52,6 +54,7 @@ function Cart() {
     );
   };
 
+  // Whether the cart is empty
   const emptyCart = () => {
     return (
       <div className="px-4 my-5 rounded-3 py-5">

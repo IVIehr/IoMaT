@@ -9,7 +9,6 @@ import db from "../firebase";
 function Checkout() {
   const state = useSelector((state) => state.handleCart);
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     alert("اتصال به بانک")
@@ -19,6 +18,7 @@ function Checkout() {
   const itemList = (item) => {
     total = total + item.price;
 
+    // show to nuber of items in the cart
     return (
       <li className="list-group-item d-flex justify-content-between lh-sm">
         <div>

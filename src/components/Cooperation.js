@@ -12,6 +12,7 @@ function Cooperation() {
         </div>
         <div className="row">
           <div className="col-md-6">
+            {/* Send the result ot the form to my email */}
             <form
               action="mailto: mehr910093@gmail.com"
               method="post"

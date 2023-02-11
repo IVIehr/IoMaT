@@ -59,6 +59,7 @@ function Navbar() {
                 {userState && userState?.state !== null ? (
                   <>
                     <div>
+                      {/* Check if the user is logged in or not */}
                       {userState?.state?.displayName !== null
                         ? userState?.state?.displayName
                         : userState?.state?.email}
