@@ -43,7 +43,7 @@ const SearchBox = () => {
         setValue(query);
       }
     return ( 
-        <form class="input-group mb-3">
+        <form className="input-group mb-3">
             <input 
                 type="text"
                 className="form-control"
