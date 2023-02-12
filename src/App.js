@@ -9,7 +9,6 @@ import Checkout from "./components/Checkout";
 import Teaching from "./components/Teaching";
 import Cooperation from "./components/Cooperation";
 import Footer from "./components/Footer";
-import SearchResult from "./components/SearchResult";
 
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
           <Route path="/checkout"element={<Checkout />}/>
           <Route path="/teaching" element={<Teaching />} />
           <Route path="/cooperation" element={<Cooperation />} />
-          <Route path="/result" render={(props) => <SearchResult {...props}/>}/>
         </Routes>
         <Footer/>
       </Router>

@@ -1,12 +1,12 @@
 import { useState, useEffect, React} from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import SearchResult from "./SearchResult";
+import  ResultModal  from "../modal/ResultModal";
 
 const SearchBox = () => {
     const [value, setValue] = useState("");
     const [data, setData] = useState([]);
-    const navigate = useNavigate();
+    const [show, setShow] = useState(false);
+    const [search, setSerach] = useState();
     let componentMouted = true;
 
     useEffect(() => {
@@ -22,6 +22,11 @@ const SearchBox = () => {
         getProducts();
       }, []);
 
+      const hideModal = () => {
+        setShow(false);
+      };
+
+
     const proceedTeaching = (e) => {
         e.preventDefault();
         var filtered;
@@ -29,10 +34,8 @@ const SearchBox = () => {
           filtered = data.filter(m => m.title.toLowerCase().includes(value.toLowerCase()));
         }
         if(filtered.length != 0){
-          var id = filtered[0].id
-          navigate(`/products/${id}`)
-            // <SearchResult data={filtered}/>
-            // navigate('/result')
+            setShow(true);
+            setSerach(filtered)
         }
         else{
           toast("آموزش مورد نظر یافت نشد");
@@ -59,6 +62,7 @@ const SearchBox = () => {
                 >جستجو
             </button>
             <ToastContainer />
+            <ResultModal show={show} handleClose={hideModal} data={search}/>
         </form>
      );
 }
