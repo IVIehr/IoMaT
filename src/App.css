@@ -29,7 +29,7 @@
 .modal-content{
   z-index: 1;
   right: 30%;
-  top: 85px;
+  top: 1px;
   width: 35vw !important;
 }
 

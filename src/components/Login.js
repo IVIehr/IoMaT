@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { auth, provider } from "../firebase";
 import { useDispatch } from "react-redux";

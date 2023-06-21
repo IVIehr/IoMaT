@@ -1,12 +1,17 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { auth } from "../firebase";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../redux/action";
 import { useNavigate } from "react-router-dom";
-import  Modal  from "../modal/Modal";
+import Modal from "../modal/Modal";
 
 function Signup() {
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [address, setAdress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
@@ -76,27 +81,12 @@ function Signup() {
               <form onSubmit={register}>
                 <div className="mb-3 text-start">
                   <label htmlFor="exampleInputEmail1" className="form-label">
-                    نام کاربری
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3 text-start">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
                     ایمیل
                   </label>
                   <input
                     type="email"
                     className="form-control"
                     id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -115,6 +105,71 @@ function Signup() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="firstName" className="form-label">
+                    نام
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="firstName"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="lastName" className="form-label">
+                    نام خانوادگی
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="lastName"
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="companyName" className="form-label">
+                    نام سازمان
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="companyName"
+                    required
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="address" className="form-label">
+                    آدرس
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="address"
+                    required
+                    value={address}
+                    onChange={(e) => setAdress(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="phone" className="form-label">
+                    شماره تلفن
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="phone"
+                    required
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
+                </div>
                 <div className="mb-3 form-check text-start">
                   <input
                     type="checkbox"
@@ -122,9 +177,13 @@ function Signup() {
                     id="exampleCheck1"
                     required
                   />
-                  <Modal show={show} handleClose={hideModal}/>
+                  <Modal show={show} handleClose={hideModal} />
                   <label className="form-check-label" htmlFor="exampleCheck1">
-                    با <a href="#" onClick={showModal}>شرایط و ضوابط</a> موافقت می نمایم
+                    با{" "}
+                    <a href="#" onClick={showModal}>
+                      شرایط و ضوابط
+                    </a>{" "}
+                    موافقت می نمایم
                   </label>
                 </div>
                 <button type="submit" className="btn btn-dark w-100 mt-5 mb-3">

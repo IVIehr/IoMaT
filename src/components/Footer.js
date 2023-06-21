@@ -15,7 +15,7 @@ function Footer() {
                   <a href="/teaching">همکاری</a>
                 </li>
                 <li>
-                  <a href="#">مجله فرادرس</a>
+                  <a href="#">مجله کشتی یاب</a>
                 </li>
                 <li>
                   <a href="#">پیشنهاد آموزش</a>
@@ -56,7 +56,7 @@ function Footer() {
           <div className="col-lg-12">
             <div className="footer_nav_container">
               <div className="cr">
-              © فرادرس 1401. تمامی حقوق محفوظ است.
+              © کشتی یاب 1401. تمامی حقوق محفوظ است.
               </div>
             </div>
           </div>

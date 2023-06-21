@@ -19,7 +19,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white py-3 shadow-sm fixed-top">
         <div className="container">
           <NavLink className="navbar-brand fw-bold fs-4 dark-text" to="/">
-            فرادرس
+            کشتی یاب
           </NavLink>
           <button
             className="navbar-toggler"
@@ -50,7 +50,7 @@ function Navbar() {
               </li>
               <li className="nav-item dark-text">
                 <NavLink className="nav-link" to="/teaching">
-                  تدریس در فرادرس
+                  تدریس در کشتی یاب
                 </NavLink>
               </li>
             </ul>
@@ -77,11 +77,6 @@ function Navbar() {
                     <Login /> <Signup />
                   </>
                 )}
-
-                <NavLink to="/cart" className="btn btn-outline-dark ms-2">
-                  <i className="fa fa-shopping-cart me-1"></i> سبد خرید (
-                  {state.length === 0 ? 0 : state.length})
-                </NavLink>
               </div>
             </div>
           </div>

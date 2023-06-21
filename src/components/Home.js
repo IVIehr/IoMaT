@@ -16,7 +16,7 @@ function Home() {
           />
           <div className="card-img-overlay d-flex hero-header mt-5 flex-column align-items-center justify-content-center">
             <div className="container text-center">
-              <p className="card-text lead fs-5 fw-bold">در بین بیش از ۲۰,۰۰۰ ساعت آموزش فرادرسی جستجو کنید و به جمع میلیونی دانشجویان فرادرس بپیوندید.</p>
+              <p className="card-text lead fs-5 fw-bold">در بین بیش از ۲۰,۰۰۰ ساعت آموزش کشتی یابی جستجو کنید و به جمع میلیونی دانشجویان کشتی یاب بپیوندید.</p>
             </div>
             <div className="mt-5">
               <SearchBox/>
@@ -25,7 +25,6 @@ function Home() {
         </div>
       </div>
       <Offer/>
-      <Products />
     </div>
   );
 }
