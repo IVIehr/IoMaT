@@ -11,7 +11,7 @@ function Teaching() {
     if (userState !== null) {
       navigate("/cooperation");
     } else {
-      toast("لطفا ابتدا وارد شوید");
+      toast.warning("لطفا ابتدا وارد شوید", { position: "bottom-right"});
     }
   };
   return (
@@ -38,7 +38,7 @@ function Teaching() {
           >
             انتشار آموزش را شروع کنید
           </button>
-          <ToastContainer />
+          <ToastContainer rtl/>
           </div>
         </div>
       </div>

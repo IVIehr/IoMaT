@@ -38,7 +38,7 @@ const SearchBox = () => {
             setSerach(filtered)
         }
         else{
-          toast("آموزش مورد نظر یافت نشد");
+          toast.warning("آموزش مورد نظر یافت نشد", { position: "bottom-right"});
         }
       };
     
@@ -61,7 +61,7 @@ const SearchBox = () => {
                 onClick={e => proceedTeaching(e)}
                 >جستجو
             </button>
-            <ToastContainer />
+            <ToastContainer rtl/>
             <ResultModal show={show} handleClose={hideModal} data={search}/>
         </form>
      );
