@@ -77,7 +77,7 @@ function Cart() {
           >
             ادامه
           </button>
-          <ToastContainer />
+          <ToastContainer rtl/>
         </div>
       </div>
     );
