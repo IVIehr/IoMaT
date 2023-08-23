@@ -61,8 +61,8 @@ const Signup = () => {
                   }}
                 ></button>
               </div>
-              <h5 className="login-header mb-5 text-center">ثبت‌نام</h5>
-              <div className="modal-body ps-5 pe-5 pt-0 pb-3">
+              <h5 className="login-header mb-4 text-center">ثبت‌نام</h5>
+              <div className="modal-body ps-5 pe-5 pt-0">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="mb-3 text-end">
                     <label htmlFor="exampleInpuName" className="form-label">
@@ -139,8 +139,8 @@ const Signup = () => {
                   <button type="submit" className="btn btn-dark w-100 my-4">
                     ثبت نام کنید
                   </button>
-                  <div className="form-check text-center">
-                    <label className="form-check-label" htmlFor="exampleCheck1">
+                  <div className="text-center">
+                    <label>
                       قبلا ثبت نام کرده اید؟
                       <a
                         href="#"
@@ -155,9 +155,9 @@ const Signup = () => {
                   </div>
                 </form>
               </div>
-              <ToastContainer rtl />
             </section>
           </div>
+          <ToastContainer rtl />
         </>
       )}
     </>

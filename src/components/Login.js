@@ -1,53 +1,41 @@
 import React, { useState } from "react";
-import { auth, provider } from "../firebase";
 import { useDispatch } from "react-redux";
 import { signIn } from "../redux/action";
-import { useNavigate } from "react-router-dom";
-import Modal from "../modal/Modal";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
-  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  // Authentication
-  const handleAuth = () => {
-    auth
-      .signInWithPopup(provider)
-      .then((result) => {
-        setUser(result.user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
+  const { register, handleSubmit, reset } = useForm();
 
   // Equal to post data to server
-  const login = (e) => {
-    e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        navigate("/");
-        setUser(auth.user);
-        setModal(false);
-      })
-      .catch((error) => alert(error.message));
+  const login = async (data) => {
+    try {
+      await axios
+        .post("http://77.237.82.37:4041/auth/login", data)
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(res.data.message, { position: "bottom-right" });
+            setModal(false);
+            // setUser(auth.user);
+          } else {
+            toast.error(res.data.message, { position: "bottom-right" });
+          }
+        });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const setUser = (user) => {
     dispatch(signIn(user));
   };
 
-  const showModal = () => {
-    setShow(true);
-  };
-
-  const hideModal = () => {
-    setShow(false);
+  const onSubmit = (data) => {
+    login(data);
+    reset();
   };
 
   return (
@@ -61,80 +49,79 @@ function Login() {
       </button>
       {modal === true && (
         <>
-          <div className="formWrapper" onClick={() => setModal(false)} />
-
-          <div className="modal-content position-absolute">
-            <div className="d-flex justify-content-end align-items-center mb-1 mt-4 me-4">
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                onClick={() => setModal(false)}
-              ></button>
-            </div>
-            <div className="modal-body ps-5 pe-5 pt-0 pb-3">
-              <h5
-                className="modal-title login-header text-start mb-5 text-center"
-                id="exampleModalLabel"
-              >
-                ورود به حساب کاربری
-              </h5>
-              <button
-                className="btn btn-dark w-100 mb-4"
-                data-bs-dismiss="modal"
-                onClick={handleAuth}
-              >
-                <span className="fa fa-google me-2"></span> ورود با حساب گوگل
-              </button>
-              <form onSubmit={login}>
-                <div className="mb-3 text-start">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    ایمیل
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3 text-start">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    رمز عبور
-                  </label>
-                  <input
-                    required
-                    type="password"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3 form-check text-start">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="exampleCheck1"
-                    required
-                  />
-                  <Modal show={show} handleClose={hideModal}/>
-                  <label className="form-check-label" htmlFor="exampleCheck1">
-                    با <a href="#" onClick={showModal}>شرایط و ضوابط</a> موافقت می نمایم
-                  </label>
-                </div>
-                <button type="submit" className="btn btn-dark w-100 mt-5 mb-3">
-                  ورود
-                </button>
-              </form>
+          <div className="modal d-block">
+            <div className="modal-main p-4 rounded-3 w-50 overflow-auto">
+              <div className="d-flex justify-content-end align-items-center mb-1 mt-4 me-4">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={() => setModal(false)}
+                ></button>
+              </div>
+              <div className="modal-body ps-5 pe-5 pt-0">
+                <h5
+                  className="login-header text-start mb-4 text-center"
+                  id="exampleModalLabel"
+                >
+                  ورود به حساب کاربری
+                </h5>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="mb-3 text-end">
+                    <label htmlFor="exampleInputEmail" className="form-label">
+                      ایمیل
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="exampleInputEmail"
+                      required
+                      {...register("email")}
+                    />
+                  </div>
+                  <div className="mb-3 text-end">
+                    <label
+                      htmlFor="exampleInputPassword"
+                      className="form-label"
+                    >
+                      رمز عبور
+                    </label>
+                    <input
+                      required
+                      type="password"
+                      className="form-control"
+                      id="exampleInputPassword"
+                      {...register("password")}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn-dark w-100 my-4"
+                  >
+                    ورود
+                  </button>
+                  <div className="text-center">
+                    <label>
+                      حساب کاربری ندارید؟
+                      <a
+                        href="#"
+                        onClick={() => {
+                          setModal(false);
+                          reset();
+                        }}
+                      >
+                        ثبت نام کنید
+                      </a>{" "}
+                    </label>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </>
       )}
+      <ToastContainer rtl />
     </>
   );
 }
