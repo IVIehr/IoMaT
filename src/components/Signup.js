@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../redux/action";
 import { useNavigate } from "react-router-dom";
-import  Modal  from "../modal/Modal";
+import Modal from "../modal/Modal";
+import axios from "axios";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -14,20 +15,32 @@ function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const register = (e) => {
+  const item = {
+    email: "m.navidimehr@gmail.com",
+    password: "12345678",
+    firstName: "mehr",
+    lastName: "navidi",
+    legal: false,
+    companyName: "",
+    address: "",
+    phoneNumber: "",
+  };
+
+  const register = async (e) => {
     e.preventDefault();
 
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        // it successfully created a new user with email and password
-        setModal(false);
-        if (auth) {
+    try {
+     await axios.post("http://77.237.82.37:4041/auth/register", item).then(res => {
+      setModal(false);
+        if (res) {
           navigate("/");
         }
-        setUser(auth.user);
-      })
-      .catch((error) => alert(error.message));
+        // setUser(auth.user);
+        console.log(res.data);
+     });
+    } catch (error) {
+      alert(error.message)
+    }
   };
 
   const setUser = (user) => {
@@ -122,9 +135,13 @@ function Signup() {
                     id="exampleCheck1"
                     required
                   />
-                  <Modal show={show} handleClose={hideModal}/>
+                  <Modal show={show} handleClose={hideModal} />
                   <label className="form-check-label" htmlFor="exampleCheck1">
-                    با <a href="#" onClick={showModal}>شرایط و ضوابط</a> موافقت می نمایم
+                    با{" "}
+                    <a href="#" onClick={showModal}>
+                      شرایط و ضوابط
+                    </a>{" "}
+                    موافقت می نمایم
                   </label>
                 </div>
                 <button type="submit" className="btn btn-dark w-100 mt-5 mb-3">
