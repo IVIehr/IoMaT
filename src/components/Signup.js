@@ -1,45 +1,41 @@
-import { auth } from "../firebase";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../redux/action";
 import { useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 
-function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Signup = () => {
   const [modal, setModal] = useState(false);
   const [show, setShow] = useState(false);
+  const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const item = {
-    email: "m.navidimehr@gmail.com",
-    password: "12345678",
-    firstName: "mehr",
-    lastName: "navidi",
-    legal: false,
     companyName: "",
     address: "",
     phoneNumber: "",
   };
 
-  const register = async (e) => {
-    e.preventDefault();
-
+  const registerUser = async (data) => {
+    const userData = { ...data, legal: false };
     try {
-     await axios.post("http://77.237.82.37:4041/auth/register", item).then(res => {
-      setModal(false);
-        if (res) {
-          navigate("/");
-        }
-        // setUser(auth.user);
-        console.log(res.data);
-     });
+      await axios
+        .post("http://77.237.82.37:4041/auth/register", userData)
+        .then((res) => {
+          if (res.data.success) {
+            toast.success(res.data.message, { position: "bottom-left"});
+            setModal(false);
+          } else {
+            toast.error(res.data.message, { position: "bottom-left"});
+          }
+          // setUser(auth.user);
+        });
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
   };
 
@@ -55,6 +51,10 @@ function Signup() {
     setShow(false);
   };
 
+  const onSubmit = (data) => {
+    registerUser(data);
+  };
+
   return (
     <>
       <button
@@ -64,11 +64,10 @@ function Signup() {
       >
         <i className="fa fa-user-plus me-1"></i> ثبت نام
       </button>
-      {/* <!-- Modal --> */}
       {modal === true && (
         <>
-          <div className="formWrapper" onClick={() => setModal(false)} />
-          <div className="modal-content position-absolute ">
+          <div className="formWrapper" />
+          <div className="modal-content position-absolute">
             <div className="d-flex justify-content-end align-items-center mb-1 mt-4 me-4">
               <button
                 type="button"
@@ -86,46 +85,74 @@ function Signup() {
               <button className="btn btn-dark w-100 mb-4">
                 <span className="fa fa-google me-2"></span> ثبت‌نام با گوگل
               </button>
-              <form onSubmit={register}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-3 text-start">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    نام کاربری
+                  <label htmlFor="exampleInpuName" className="form-label">
+                    نام
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
+                    id="exampleInpuName"
                     required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    {...register("firstName")}
                   />
                 </div>
                 <div className="mb-3 text-start">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
+                  <label htmlFor="exampleInputEmail" className="form-label">
                     ایمیل
                   </label>
                   <input
                     type="email"
                     className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
+                    id="exampleInputEmail"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    {...register("email")}
                   />
                 </div>
                 <div className="mb-3 text-start">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
+                  <label htmlFor="exampleInputPassword" className="form-label">
                     رمز عبور
                   </label>
                   <input
                     required
                     type="password"
                     className="form-control"
-                    id="exampleInputPassword1"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    id="exampleInputPassword"
+                    {...register("password")}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="companyName" className="form-label">
+                    نام سازمان
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="companyName"
+                    {...register("companyName")}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="address" className="form-label">
+                    آدرس
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="address"
+                    {...register("address")}
+                  />
+                </div>
+                <div className="mb-3 text-start">
+                  <label htmlFor="phoneNumber" className="form-label">
+                    شماره تلفن
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="phoneNumber"
+                    {...register("phoneNumber")}
                   />
                 </div>
                 <div className="mb-3 form-check text-start">
@@ -149,11 +176,12 @@ function Signup() {
                 </button>
               </form>
             </div>
+            <ToastContainer />
           </div>
         </>
       )}
     </>
   );
-}
+};
 
 export default Signup;

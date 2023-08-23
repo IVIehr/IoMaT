@@ -38,7 +38,7 @@ const SearchBox = () => {
             setSerach(filtered)
         }
         else{
-          toast("آموزش مورد نظر یافت نشد");
+          toast.warning("آموزش مورد نظر یافت نشد", { position: "bottom-left"});
         }
       };
     

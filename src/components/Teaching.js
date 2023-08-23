@@ -11,7 +11,7 @@ function Teaching() {
     if (userState !== null) {
       navigate("/cooperation");
     } else {
-      toast("لطفا ابتدا وارد شوید");
+      toast.warning("لطفا ابتدا وارد شوید", { position: "bottom-left"});
     }
   };
   return (
