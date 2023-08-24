@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../searchBox";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Ports() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
+  const userState = useSelector((userState) => userState.handleUser);
+  const navigate = useNavigate();
   let componentMouted = true;
 
   useEffect(() => {
@@ -43,6 +49,14 @@ function Ports() {
         </div>
       </>
     );
+  };
+
+  const handleNewBoat = () => {
+    if (userState !== null) {
+      navigate("/cooperation");
+    } else {
+      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+    }
   };
 
   const filterProduct = (cat) => {
@@ -102,7 +116,7 @@ function Ports() {
                     to={`/ports/${product.id}`}
                     className="btn btn-outline-dark"
                   >
-                    مشاهده کنید
+                    اطلاعات بیشتر
                   </NavLink>
                 </div>
               </div>
@@ -121,16 +135,20 @@ function Ports() {
             لیست بندر ها
           </h3>
           <hr />
-          <div className="d-flex flex-column align-items-center justify-content-center">
-            <div className="m-auto mt-4">
-              <SearchBox itemToSearch="بندر"/>
+          <div className="d-flex flex-row align-items-center justify-content-between mt-4">
+            <div>
+              <SearchBox itemToSearch="بندر" />
             </div>
+            <button className="btn btn-dark" onClick={handleNewBoat}>
+              افزودن بندر جدید <AiOutlinePlus />
+            </button>
           </div>
         </div>
       </div>
       <div className="row d-flex justify-content-center">
         {loading ? <Loading /> : <ShowProducts />}
       </div>
+      <ToastContainer rtl />
     </div>
   );
 }

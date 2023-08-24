@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../searchBox";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Boats() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
+  const userState = useSelector((userState) => userState.handleUser);
+  const navigate = useNavigate();
   let componentMouted = true;
 
   useEffect(() => {
@@ -50,6 +56,14 @@ function Boats() {
     setFilter(updatedList);
   };
 
+  const handleNewPort = () => {
+    if (userState !== null) {
+      navigate("/cooperation");
+    } else {
+      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+    }
+  };
+
   const ShowProducts = () => {
     return (
       <>
@@ -91,28 +105,28 @@ function Boats() {
         </div>
         {filter.map((product) => {
           return (
-              <div key={product.id} className="col-md-3 mb-4">
-                <div className="card h-100 text-center p-4" key={product.id}>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    height="250px"
-                    className="card-img-top"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title mb-0">
-                      {product.title.substring(0, 12)}...
-                    </h5>
-                    <p className="card-text lead fw-bold">${product.price}</p>
-                    <NavLink
-                      to={`/boats/${product.id}`}
-                      className="btn btn-outline-dark"
-                    >
-                      مشاهده کنید
-                    </NavLink>
-                  </div>
+            <div key={product.id} className="col-md-3 mb-4">
+              <div className="card h-100 text-center p-4" key={product.id}>
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  height="250px"
+                  className="card-img-top"
+                />
+                <div className="card-body">
+                  <h5 className="card-title mb-0">
+                    {product.title.substring(0, 12)}...
+                  </h5>
+                  <p className="card-text lead fw-bold">${product.price}</p>
+                  <NavLink
+                    to={`/boats/${product.id}`}
+                    className="btn btn-outline-dark"
+                  >
+                    اطلاعات بیشتر
+                  </NavLink>
                 </div>
               </div>
+            </div>
           );
         })}
       </>
@@ -127,16 +141,20 @@ function Boats() {
             لیست کشتی ها
           </h3>
           <hr />
-          <div className="d-flex flex-column align-items-center justify-content-center">
-            <div className="m-auto mt-4">
-              <SearchBox itemToSearch="کشتی"/>
+          <div className="d-flex flex-row align-items-center justify-content-between mt-4">
+            <div>
+              <SearchBox itemToSearch="کشتی" />
             </div>
+            <button className="btn btn-dark" onClick={handleNewPort}>
+              افزودن کشتی جدید <AiOutlinePlus />
+            </button>
           </div>
         </div>
       </div>
       <div className="row d-flex justify-content-center">
         {loading ? <Loading /> : <ShowProducts />}
       </div>
+      <ToastContainer rtl />
     </div>
   );
 }
