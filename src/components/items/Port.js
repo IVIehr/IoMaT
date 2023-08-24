@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Port() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
+  const userState = useSelector((userState) => userState.handleUser);
+  const navigate = useNavigate();
 
   // Fetch data from API
   useEffect(() => {
@@ -37,6 +43,14 @@ function Port() {
     );
   };
 
+  const handleEditPort = () => {
+    if (userState !== null) {
+      navigate("/cooperation");
+    } else {
+      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+    }
+  };
+
   const ShowProduct = () => {
     return (
       <>
@@ -44,7 +58,7 @@ function Port() {
           <h4 className="text-uppercase text-black-50"> {product.category}</h4>
           <h1 className="display-5">{product.title}</h1>
           <p className="lead fw-bolder">
-             {product.rating && product.rating.rate}
+            {product.rating && product.rating.rate}
             <i className="fa fa-star"></i>
           </p>
           <img
@@ -61,13 +75,13 @@ function Port() {
         <div className="col-md-6">
           <div className="border border-1 p-4">
             <h5 className="my-3">فهرست سرفصل ها</h5>
-            <p >{product.description}</p>
+            <p>{product.description}</p>
             <div className="d-flex flex-column align-items-center">
-              <h3 className="my-5 text-center">هزینه آموزش:  {product.price} تومان</h3>
-              <button
-                className="btn btn-dark w-50"
-              >
-                افزودن به سبد
+              <h3 className="my-5 text-center">
+                هزینه آموزش: {product.price} تومان
+              </h3>
+              <button className="btn btn-dark" onClick={handleEditPort}>
+                ویرایش جزئیات <AiOutlinePlus />
               </button>
             </div>
           </div>
@@ -83,6 +97,7 @@ function Port() {
           {loading ? <Loading /> : <ShowProduct />}
         </div>
       </div>
+      <ToastContainer rtl />
     </div>
   );
 }
