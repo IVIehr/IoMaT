@@ -34,27 +34,23 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  aria-current="page"
-                  to="/"
-                >
+                <NavLink className="nav-link" aria-current="page" to="/">
                   نقشه
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/boats">
-                 لیست کشتی ها
+                  لیست کشتی ها
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/ports">
-                 لیست بندر ها
+                  لیست بندر ها
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/teaching">
-                  اخبار
+                <NavLink className="nav-link" to="/about">
+                  درباره دریاگشت
                 </NavLink>
               </li>
             </ul>
