@@ -1,15 +1,16 @@
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Boats from "./components/items/Boats";
 import Boat from "./components/items/Boat";
 import Ports from "./components/items/Ports"
 import Port from "./components/items/Port"
 import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Teaching from "./components/Teaching";
 import Cooperation from "./components/Cooperation";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
