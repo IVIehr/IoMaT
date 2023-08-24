@@ -43,7 +43,7 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/products">
+                <NavLink className="nav-link" to="/boats">
                  لیست کشتی ها
                 </NavLink>
               </li>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 
-function Product() {
+function Boat() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -87,4 +87,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Boat;

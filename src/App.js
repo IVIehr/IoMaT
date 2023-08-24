@@ -1,15 +1,15 @@
 import "./App.css";
 import Home from "./components/Home";
-import Products from "./components/items/Boats";
-import Product from "./components/items/Boat";
+import Boats from "./components/items/Boats";
+import Boat from "./components/items/Boat";
+import Ports from "./components/items/Ports"
+import Port from "./components/items/Port"
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Teaching from "./components/Teaching";
 import Cooperation from "./components/Cooperation";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
-import Ports from "./components/items/Ports"
-import Port from "./components/items/Port"
 
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<Product />} />
+          <Route path="/boats" element={<Boats />} />
+          <Route path="/boats/:id" element={<Boat />} />
           <Route path="/ports" element={<Ports />} />
           <Route path="/ports/:id" element={<Port />} />
           <Route path="/teaching" element={<Teaching />} />

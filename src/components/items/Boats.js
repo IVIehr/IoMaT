@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 
-function Products() {
+function Boats() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -104,7 +104,7 @@ function Products() {
                     </h5>
                     <p className="card-text lead fw-bold">${product.price}</p>
                     <NavLink
-                      to={`/products/${product.id}`}
+                      to={`/boats/${product.id}`}
                       className="btn btn-outline-dark"
                     >
                       مشاهده کنید
@@ -135,4 +135,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Boats;
