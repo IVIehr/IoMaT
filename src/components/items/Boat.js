@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addCart } from "../redux/action";
 
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
-  const addProduct = (product) => {
-    dispatch(addCart(product));
-  };
 
   // Fetch data from API
   useEffect(() => {
@@ -72,7 +66,6 @@ function Product() {
               <h3 className="my-5 text-center">هزینه آموزش:  {product.price} تومان</h3>
               <button
                 className="btn btn-dark w-50"
-                onClick={() => addProduct(product)}
               >
                 افزودن به سبد
               </button>

@@ -123,7 +123,7 @@ function Products() {
       <div className="row">
         <div className="col-12 mb-5">
           <h3 className="display-6 fw-bolder text-center dark-text">
-            همه آموزش ها
+            لیست کشتی ها
           </h3>
           <hr />
         </div>
