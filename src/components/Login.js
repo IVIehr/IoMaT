@@ -99,7 +99,7 @@ function Login() {
                     type="submit"
                     className="btn btn-dark w-100 my-4"
                   >
-                    ورود
+                     ورود به کشتی یاب
                   </button>
                   <div className="text-center">
                     <label>

@@ -1,6 +1,5 @@
 import {React} from "react";
-import Offer from "./Offer";
-import Products from "./Products";
+import Products from "./ListOfItems/Boats";
 import SearchBox from "./searchBox";
 
 function Home() {
@@ -24,7 +23,6 @@ function Home() {
           </div>
         </div>
       </div>
-      <Offer/>
       <Products />
     </div>
   );
