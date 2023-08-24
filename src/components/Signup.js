@@ -137,7 +137,7 @@ const Signup = () => {
                     />
                   </div>
                   <button type="submit" className="btn btn-dark w-100 my-4">
-                    ثبت نام در کشتی یاب
+                    ثبت نام در دریاگشت{" "}
                   </button>
                   <div className="text-center">
                     <label>

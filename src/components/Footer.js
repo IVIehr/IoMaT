@@ -50,7 +50,7 @@ function Footer() {
           <div className="col-lg-12">
             <div className="footer_nav_container">
               <div className="cr">
-              © کشتی یاب 1402. تمامی حقوق محفوظ است.
+              © دریاگشت 1402. تمامی حقوق محفوظ است.
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import {React} from "react";
-import Products from "./ListOfItems/Boats";
+import Products from "./items/Boats";
 import SearchBox from "./searchBox";
 
 function Home() {

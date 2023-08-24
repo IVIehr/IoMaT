@@ -18,7 +18,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white py-3 shadow-sm fixed-top">
         <div className="container">
           <NavLink className="navbar-brand fw-bold fs-4 dark-text" to="/">
-            کشتی یاب
+            دریاگشت
           </NavLink>
           <button
             className="navbar-toggler"
