@@ -4,17 +4,21 @@
 
 .nav-item{
   margin-right: 8px;
-}
-.nav-link:hover{
-  background-color:  rgba(44, 82, 106, 0.934);
-  color: white !important;
-  border-radius: 4px;
+  margin-left: 8px;
 }
 
-.nav-link:focus{
-  background-color:  rgba(44, 82, 106, 0.934);
-  color: white !important;
-  border-radius: 4px;
+.nav-link{
+  padding : 0 !important;
+  padding-bottom: 3px !important;
+  padding-top: 3px !important;
+}
+
+.nav-link.active{
+  border:3px solid rgba(44, 82, 106, 0.934);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  outline: 0 !important;
 }
 
 .card-img{
@@ -157,4 +161,11 @@ footer.footer {
 
 #myBtn:hover {
   background-color: #5bc5e2;
+}
+
+.video-bg {
+  opacity: 1;
+  pointer-events: none;
+  max-height: 80vh;
+  object-fit: cover;
 }

@@ -1,22 +1,11 @@
-import {React} from "react";
-import SearchBox from "./searchBox";
+import { React } from "react";
 
 function Home() {
   return (
     <div className="">
       <div className="hero">
-        <div className="card bg-dark text-white border-0 ">
-          <img
-            src="/assets/banner.jpg"
-            className="card-img opacity-50"
-            alt="Background"
-            height="400px"
-          />
-          <div className="card-img-overlay d-flex hero-header mt-5 flex-column align-items-center justify-content-center">
-            <div className="mt-5">
-              <SearchBox/>
-            </div>
-          </div>
+        <div className="card bg-dark text-white border-0">
+          <video autoPlay loop muted className="video-bg" src="/assets/map-video.mp4" type="video/mp4"/>
         </div>
       </div>
     </div>

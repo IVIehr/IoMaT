@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
+import SearchBox from "../searchBox";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Ports() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
+  const userState = useSelector((userState) => userState.handleUser);
+  const navigate = useNavigate();
   let componentMouted = true;
 
   useEffect(() => {
@@ -44,6 +51,14 @@ function Ports() {
     );
   };
 
+  const handleNewBoat = () => {
+    if (userState !== null) {
+      navigate("/cooperation");
+    } else {
+      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+    }
+  };
+
   const filterProduct = (cat) => {
     const updatedList = data.filter((x) => x.category === cat);
     setFilter(updatedList);
@@ -59,31 +74,25 @@ function Ports() {
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => setFilter(data)}
               >
-                All
+                همه
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("men's clothing")}
               >
-                Mens' Clothing
+                دریای خزر
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("women's clothing")}
               >
-                Womens' Clothing
+                خلیج فارس
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("jewelery")}
               >
-                Jewelery
-              </button>
-              <button
-                className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("electronics")}
-              >
-                Electronic
+                دریای عمان
               </button>
             </div>
           </div>
@@ -107,7 +116,7 @@ function Ports() {
                     to={`/ports/${product.id}`}
                     className="btn btn-outline-dark"
                   >
-                    مشاهده کنید
+                    اطلاعات بیشتر
                   </NavLink>
                 </div>
               </div>
@@ -126,15 +135,20 @@ function Ports() {
             لیست بندر ها
           </h3>
           <hr />
-          <p className="text-center">
-            جزئیات بیش از 600 بندر در ایران، از جمله شرح و موقعیت بنادر روی
-            نقشه.<br/>تمام کشتی های نزدیک به هر بندر نیز روی نقشه قابل مشاهده هستند.
-          </p>
+          <div className="d-flex flex-row align-items-center justify-content-between mt-4">
+            <div>
+              <SearchBox itemToSearch="بندر" />
+            </div>
+            <button className="btn btn-dark" onClick={handleNewBoat}>
+              افزودن بندر جدید <AiOutlinePlus />
+            </button>
+          </div>
         </div>
       </div>
       <div className="row d-flex justify-content-center">
         {loading ? <Loading /> : <ShowProducts />}
       </div>
+      <ToastContainer rtl />
     </div>
   );
 }

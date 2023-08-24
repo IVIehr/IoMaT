@@ -9,10 +9,7 @@ function Footer() {
             <div className="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
               <ul className="footer_nav">
                 <li>
-                  <a href="#">تماس با ما</a>
-                </li>
-                <li>
-                  <a href="/teaching">همکاری</a>
+                  <a href="/about">درباره دریاگشت</a>
                 </li>
               </ul>
             </div>

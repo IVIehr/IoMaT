@@ -1,12 +1,16 @@
+@font-face {
+	font-family: "iransansweb";
+	src: local("iransansweb"), url(../public/assets/fonts/iransansweb.ttf) format('truetype');
+
+}
+
 html{
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: iransansweb !important ;
   padding-top: 60px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
