@@ -40,12 +40,12 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/boats">
-                  لیست کشتی ها
+                  کشتی ها
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/ports">
-                  لیست بندر ها
+                  بندر ها
                 </NavLink>
               </li>
               <li className="nav-item">
