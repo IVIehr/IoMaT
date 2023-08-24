@@ -14,7 +14,7 @@ function ResultModal({ handleClose, show, data}){
             return(
                 <>  
                 <li className='text-dark'>
-                    <NavLink to={`/products/${product.id}`}>{product.title}</NavLink>
+                    <NavLink to={`/ports/${product.id}`}>{product.title}</NavLink>
                 </li>
                 </>
             )

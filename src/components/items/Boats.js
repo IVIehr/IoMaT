@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
+import SearchBox from "../searchBox";
 
 function Boats() {
   const [data, setData] = useState([]);
@@ -59,31 +60,31 @@ function Boats() {
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => setFilter(data)}
               >
-                All
+                همه
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("men's clothing")}
               >
-                Mens' Clothing
+                ناوبر باری
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("women's clothing")}
               >
-                Womens' Clothing
+                ناوبر نفتی
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("jewelery")}
               >
-                Jewelery
+                ناوبر تفریحی
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("electronics")}
               >
-                Electronic
+                ناوبر آب و هوا
               </button>
             </div>
           </div>
@@ -126,6 +127,11 @@ function Boats() {
             لیست کشتی ها
           </h3>
           <hr />
+          <div className="d-flex flex-column align-items-center justify-content-center">
+            <div className="m-auto mt-4">
+              <SearchBox itemToSearch="کشتی"/>
+            </div>
+          </div>
         </div>
       </div>
       <div className="row d-flex justify-content-center">

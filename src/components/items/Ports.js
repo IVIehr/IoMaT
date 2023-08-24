@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
+import SearchBox from "../searchBox";
 
 function Ports() {
   const [data, setData] = useState([]);
@@ -59,31 +60,25 @@ function Ports() {
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => setFilter(data)}
               >
-                All
+                همه
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("men's clothing")}
               >
-                Mens' Clothing
+                دریای خزر
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("women's clothing")}
               >
-                Womens' Clothing
+                خلیج فارس
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
                 onClick={() => filterProduct("jewelery")}
               >
-                Jewelery
-              </button>
-              <button
-                className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("electronics")}
-              >
-                Electronic
+                دریای عمان
               </button>
             </div>
           </div>
@@ -126,10 +121,11 @@ function Ports() {
             لیست بندر ها
           </h3>
           <hr />
-          <p className="text-center">
-            جزئیات بیش از 600 بندر در ایران، از جمله شرح و موقعیت بنادر روی
-            نقشه.<br/>تمام کشتی های نزدیک به هر بندر نیز روی نقشه قابل مشاهده هستند.
-          </p>
+          <div className="d-flex flex-column align-items-center justify-content-center">
+            <div className="m-auto mt-4">
+              <SearchBox itemToSearch="بندر"/>
+            </div>
+          </div>
         </div>
       </div>
       <div className="row d-flex justify-content-center">

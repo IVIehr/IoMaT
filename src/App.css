@@ -158,3 +158,10 @@ footer.footer {
 #myBtn:hover {
   background-color: #5bc5e2;
 }
+
+.video-bg {
+  opacity: 1;
+  pointer-events: none;
+  max-height: 80vh;
+  object-fit: cover;
+}
