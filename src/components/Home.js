@@ -1,6 +1,4 @@
 import {React} from "react";
-import Offer from "./Offer";
-import Products from "./Products";
 import SearchBox from "./searchBox";
 
 function Home() {
@@ -15,17 +13,12 @@ function Home() {
             height="400px"
           />
           <div className="card-img-overlay d-flex hero-header mt-5 flex-column align-items-center justify-content-center">
-            <div className="container text-center">
-              <p className="card-text lead fs-5 fw-bold">در بین بیش از ۲۰,۰۰۰ ساعت آموزش فرادرسی جستجو کنید و به جمع میلیونی دانشجویان فرادرس بپیوندید.</p>
-            </div>
             <div className="mt-5">
               <SearchBox/>
             </div>
           </div>
         </div>
       </div>
-      <Offer/>
-      <Products />
     </div>
   );
 }

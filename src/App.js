@@ -1,14 +1,16 @@
 import "./App.css";
-import Home from "./components/Home";
-import Products from "./components/Products";
-import Product from "./components/Product";
-import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Cart from "./components/Cart";
-import Checkout from "./components/Checkout";
+import Home from "./components/Home";
+import Boats from "./components/items/Boats";
+import Boat from "./components/items/Boat";
+import Ports from "./components/items/Ports"
+import Port from "./components/items/Port"
+import Navbar from "./components/Navbar";
 import Teaching from "./components/Teaching";
 import Cooperation from "./components/Cooperation";
 import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
@@ -18,12 +20,14 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout"element={<Checkout />}/>
+          <Route path="/boats" element={<Boats />} />
+          <Route path="/boats/:id" element={<Boat />} />
+          <Route path="/ports" element={<Ports />} />
+          <Route path="/ports/:id" element={<Port />} />
           <Route path="/teaching" element={<Teaching />} />
           <Route path="/cooperation" element={<Cooperation />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route to="/not-found"/>
         </Routes>
         <Footer/>
       </Router>

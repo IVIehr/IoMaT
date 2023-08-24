@@ -95,11 +95,8 @@ function Login() {
                       {...register("password")}
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn-dark w-100 my-4"
-                  >
-                    ورود
+                  <button type="submit" className="btn btn-dark w-100 my-4">
+                    ورود به دریا گشت{" "}
                   </button>
                   <div className="text-center">
                     <label>

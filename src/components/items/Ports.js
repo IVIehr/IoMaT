@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 
-function Products() {
+function Ports() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -90,28 +90,28 @@ function Products() {
         </div>
         {filter.map((product) => {
           return (
-              <div key={product.id} className="col-md-3 mb-4">
-                <div className="card h-100 text-center p-4" key={product.id}>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    height="250px"
-                    className="card-img-top"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title mb-0">
-                      {product.title.substring(0, 12)}...
-                    </h5>
-                    <p className="card-text lead fw-bold">${product.price}</p>
-                    <NavLink
-                      to={`/products/${product.id}`}
-                      className="btn btn-outline-dark"
-                    >
-                      مشاهده کنید
-                    </NavLink>
-                  </div>
+            <div key={product.id} className="col-md-3 mb-4">
+              <div className="card h-100 text-center p-4" key={product.id}>
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  height="250px"
+                  className="card-img-top"
+                />
+                <div className="card-body">
+                  <h5 className="card-title mb-0">
+                    {product.title.substring(0, 12)}...
+                  </h5>
+                  <p className="card-text lead fw-bold">${product.price}</p>
+                  <NavLink
+                    to={`/ports/${product.id}`}
+                    className="btn btn-outline-dark"
+                  >
+                    مشاهده کنید
+                  </NavLink>
                 </div>
               </div>
+            </div>
           );
         })}
       </>
@@ -123,9 +123,13 @@ function Products() {
       <div className="row">
         <div className="col-12 mb-5">
           <h3 className="display-6 fw-bolder text-center dark-text">
-            همه آموزش ها
+            لیست بندر ها
           </h3>
           <hr />
+          <p className="text-center">
+            جزئیات بیش از 600 بندر در ایران، از جمله شرح و موقعیت بنادر روی
+            نقشه.<br/>تمام کشتی های نزدیک به هر بندر نیز روی نقشه قابل مشاهده هستند.
+          </p>
         </div>
       </div>
       <div className="row d-flex justify-content-center">
@@ -135,4 +139,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Ports;

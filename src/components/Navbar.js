@@ -6,7 +6,6 @@ import Signup from "./Signup";
 import { signOut } from "../redux/action";
 
 function Navbar() {
-  const state = useSelector((state) => state.handleCart);
   const userState = useSelector((userState) => userState.handleUser);
   const dispatch = useDispatch();
 
@@ -19,7 +18,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white py-3 shadow-sm fixed-top">
         <div className="container">
           <NavLink className="navbar-brand fw-bold fs-4 dark-text" to="/">
-            فرادرس
+            دریاگشت
           </NavLink>
           <button
             className="navbar-toggler"
@@ -36,21 +35,26 @@ function Navbar() {
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
-                  className="nav-link active dark-text"
+                  className="nav-link"
                   aria-current="page"
                   to="/"
                 >
-                  صفحه اصلی
+                  نقشه
                 </NavLink>
               </li>
-              <li className="nav-item dark-text">
-                <NavLink className="nav-link" to="/products">
-                 همه آموزش ها
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/boats">
+                 لیست کشتی ها
                 </NavLink>
               </li>
-              <li className="nav-item dark-text">
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/ports">
+                 لیست بندر ها
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink className="nav-link" to="/teaching">
-                  تدریس در فرادرس
+                  اخبار
                 </NavLink>
               </li>
             </ul>
@@ -77,11 +81,6 @@ function Navbar() {
                     <Login /> <Signup />
                   </>
                 )}
-
-                <NavLink to="/cart" className="btn btn-outline-dark ms-2">
-                  <i className="fa fa-shopping-cart me-1"></i> سبد خرید (
-                  {state.length === 0 ? 0 : state.length})
-                </NavLink>
               </div>
             </div>
           </div>

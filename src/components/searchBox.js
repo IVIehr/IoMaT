@@ -38,7 +38,7 @@ const SearchBox = () => {
             setSerach(filtered)
         }
         else{
-          toast.warning("آموزش مورد نظر یافت نشد", { position: "bottom-right"});
+          toast.warning("بندر مورد نظر یافت نشد", { position: "bottom-right"});
         }
       };
     
@@ -50,7 +50,7 @@ const SearchBox = () => {
             <input 
                 type="text"
                 className="form-control"
-                placeholder='جستجوی آموزش...'
+                placeholder='جستجوی ناوبر و بندر'
                 aria-label="Recipient's username"
                 onChange={e => handleSearch(e.currentTarget.value)}
                 aria-describedby="button-addon2"/>
