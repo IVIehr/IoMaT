@@ -4,13 +4,16 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { FaPencilAlt } from "react-icons/fa";
+import { AiFillAlert } from "react-icons/ai";
 import EditBoat from "./editBoat";
 import useGetBoat from "../../../hooks/boat/useGetBoat";
+import AlertToBoat from "./alertToBoat";
 
 function Boat() {
   const { id } = useParams();
   const [boat, setBoat] = useState([]);
   const [editModal, setEditModal] = useState(false);
+  const [alert, setAlert] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   const { data, isLoading } = useGetBoat({ vesselId: id });
 
@@ -47,6 +50,15 @@ function Boat() {
     }
   };
 
+  const handleSendAlert = () => {
+    if (userState !== null) {
+      // && access == "owner"
+      setAlert(true);
+    } else {
+      toast.info("لطفا ابتدا وارد شوید");
+    }
+  };
+
   const ShowBoat = () => {
     return (
       <>
@@ -66,11 +78,9 @@ function Boat() {
         </div>
         <div className="col-md-6">
           <div className="border border-1 p-4">
-            <div className="d-flex flex-column align-items-center">
-              <h3 className="my-5 text-center">
-                سریال کشتی:{boat.vesselSerial}
-              </h3>
-              <button className="btn btn-dark" onClick={handleEditBoat}>
+            <h3 className="my-5 text-center">سریال کشتی:{boat.vesselSerial}</h3>
+            <div className="d-flex flex-row justify-content-center">
+              <button className="btn btn-dark mx-2" onClick={handleEditBoat}>
                 ویرایش جزئیات <FaPencilAlt />
               </button>
               {editModal && (
@@ -79,6 +89,10 @@ function Boat() {
                   handleClose={() => setEditModal(false)}
                 />
               )}
+              <button className="btn btn-warning mx-2" onClick={handleSendAlert}>
+                ارسال هشدار <AiFillAlert />
+              </button>
+              {alert && <AlertToBoat handleClose={() => {setAlert(false)}}/>}
             </div>
           </div>
         </div>
