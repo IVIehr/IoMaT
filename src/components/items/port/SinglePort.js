@@ -34,7 +34,7 @@ function Port() {
         <div className="col-md-6">
           <Skeleton height={50} width={100} />
           <Skeleton height={50} width={300} />
-          <Skeleton height={300} width={300}/>
+          <Skeleton height={300} width={300} />
           <Skeleton height={100} />
         </div>
         <div className="col-md-6" style={{ lineHeight: 2 }}>

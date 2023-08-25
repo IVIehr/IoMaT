@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Boats from "./components/items/Boats";
-import Boat from "./components/items/Boat";
-import Ports from "./components/items/Ports"
-import Port from "./components/items/Port"
+import Boats from "./components/items/boat/AllBoats";
+import Boat from "./components/items/boat/SingleBoat";
+import Ports from "./components/items/port/AllPorts";
+import Port from "./components/items/port/SinglePort";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Cooperation from "./components/Cooperation";
