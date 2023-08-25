@@ -4,34 +4,21 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { FaPencilAlt } from "react-icons/fa";
-import axios from "axios";
 import EditBoat from "./editBoat";
+import useGetBoat from "../../../hooks/boat/useGetBoat";
 
 function Boat() {
   const { id } = useParams();
   const [boat, setBoat] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
-  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
+  const { data, isLoading } = useGetBoat({ vesselId: id });
 
-  // Fetch data from API
   useEffect(() => {
-    const getBoat = async () => {
-      setLoading(true);
-      const response = await axios.get(
-        `http://77.237.82.37:4041/vessel/get?vesselId=${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setBoat(response.data.data);
-      setLoading(false);
-    };
-    getBoat();
-  }, []);
+    if (data) {
+      setBoat(data.data);
+    }
+  }, [data]);
 
   // State of not loading the data => show the skeleton
   const Loading = () => {
@@ -102,7 +89,7 @@ function Boat() {
   return (
     <div>
       <div className="container py-5 ">
-        <div className="row py-5">{loading ? <Loading /> : <ShowBoat />}</div>
+        <div className="row py-5">{isLoading ? <Loading /> : <ShowBoat />}</div>
       </div>
     </div>
   );
