@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../searchBox";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
+import AddBoat from "./addBoat";
 
 function Boats() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
-  const userState = useSelector((userState) => userState.handleUser);
+  const [add , setAdd] = useState(false);
+  // const userState = useSelector((userState) => userState.handleUser);
   const navigate = useNavigate();
   let componentMouted = true;
 
@@ -57,10 +59,11 @@ function Boats() {
   };
 
   const handleNewPort = () => {
-    if (userState !== null) {
+    if (false) {
       navigate("/cooperation");
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      // toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      setAdd(true);
     }
   };
 
@@ -148,6 +151,7 @@ function Boats() {
             <button className="btn btn-dark" onClick={handleNewPort}>
               افزودن کشتی جدید <AiOutlinePlus />
             </button>
+            {add && <AddBoat modal={add} handleClose={() => setAdd(false)}/>}
           </div>
         </div>
       </div>
