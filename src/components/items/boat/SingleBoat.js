@@ -3,8 +3,11 @@ import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt, FaSailboat } from "react-icons/fa";
 import { AiFillAlert } from "react-icons/ai";
+import { TiLocation } from "react-icons/ti";
+import { IoMdLocate } from "react-icons/io";
+import { GiFishingBoat } from "react-icons/gi";
 import EditBoat from "./editBoat";
 import useGetBoat from "../../../hooks/boat/useGetBoat";
 import AlertToBoat from "./alertToBoat";
@@ -89,10 +92,39 @@ function Boat() {
                   handleClose={() => setEditModal(false)}
                 />
               )}
-              <button className="btn btn-warning mx-2" onClick={handleSendAlert}>
+              <button
+                className="btn btn-warning mx-2"
+                onClick={handleSendAlert}
+              >
                 ارسال هشدار <AiFillAlert />
               </button>
-              {alert && <AlertToBoat handleClose={() => {setAlert(false)}}/>}
+              {alert && (
+                <AlertToBoat
+                  handleClose={() => {
+                    setAlert(false);
+                  }}
+                />
+              )}
+            </div>
+            <div
+              className="d-flex justify-content-between text-primary"
+              style={{ marginTop: "4em" }}
+            >
+              <TiLocation />
+              <div className="d-flex">
+                <div class="separator"></div>
+                <GiFishingBoat className="blink_me fs-3" />
+                <div class="separator"></div>
+              </div>
+              <IoMdLocate />
+            </div>
+            <div className="d-flex justify-content-between text-primary">
+              <span style={{ fontSize: "9pt", marginTop: "10px" }}>
+                تاریخ رسیدن
+              </span>
+              <span style={{ fontSize: "9pt", marginTop: "10px" }}>
+                تاریخ حرکت
+              </span>
             </div>
           </div>
         </div>

@@ -170,3 +170,34 @@ footer.footer {
   max-height: 80vh;
   object-fit: cover;
 }
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.separator::before {
+  content: '- - - - - - - - - - - - - - - - - - - - - - - - - - - -';
+}
+
+@media screen and (max-width: 992px){
+  .separator::before {
+    content: '- - - - - - - - - - - - - -';
+  }}
+
+@media screen and (max-width: 768px){
+  .separator::before {
+    content: '- - - - - - - - - - - - - - - - - - - - - -';
+  }
+}
+
+@media screen and (max-width: 600px){
+  .separator::before {
+    content: '- - - - - - - - - - - - - - - - ';
+  }
+}
