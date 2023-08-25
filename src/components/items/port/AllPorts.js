@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
-import SearchBox from "../searchBox";
+import SearchBox from "../../searchBox";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -12,7 +12,7 @@ function Ports() {
   const [ports, setports] = useState([]);
   const [filter, setFilter] = useState(ports);
   const [loading, setLoading] = useState(false);
-  const [add, setAdd] = useState(false);
+  const [addPort, setAddPort] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   let componentMouted = true;
 
@@ -54,7 +54,7 @@ function Ports() {
 
   const handleNewPort = () => {
     if (userState !== null) {
-      setAdd(true);
+      setAddPort(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
     }
@@ -142,7 +142,7 @@ function Ports() {
             <button className="btn btn-dark" onClick={handleNewPort}>
               افزودن بندر جدید <AiOutlinePlus />
             </button>
-            {add && <AddPort modal={add} handleClose={() => setAdd(false)} />}
+            {addPort && <AddPort handleClose={() => setAddPort(false)} />}
           </div>
         </div>
       </div>
