@@ -5,23 +5,26 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
+import axios from "axios";
 
 function Port() {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [port, setPort] = useState([]);
   const [loading, setLoading] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   const navigate = useNavigate();
 
   // Fetch data from API
   useEffect(() => {
-    const getProduct = async () => {
+    const getPort = async () => {
       setLoading(true);
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      setProduct(await response.json());
+      const response = await axios.get(
+        `http://77.237.82.37:4041/port/get/id?portId=${id}`
+      );
+      setPort(response.data.data[0]);
       setLoading(false);
     };
-    getProduct();
+    getPort();
   }, []);
 
   // State of not loading the data => show the skeleton
@@ -29,15 +32,13 @@ function Port() {
     return (
       <>
         <div className="col-md-6">
-          <Skeleton height={400} />
+          <Skeleton height={50} width={100} />
+          <Skeleton height={50} width={300} />
+          <Skeleton height={300} width={300}/>
+          <Skeleton height={100} />
         </div>
         <div className="col-md-6" style={{ lineHeight: 2 }}>
-          <Skeleton height={50} width={300} />
-          <Skeleton height={75} />
-          <Skeleton height={25} width={150} />
-          <Skeleton height={50} />
           <Skeleton height={150} />
-          <Skeleton height={50} width={100} style={{ marginLeft: 6 }} />
         </div>
       </>
     );
@@ -51,34 +52,26 @@ function Port() {
     }
   };
 
-  const ShowProduct = () => {
+  const ShowPort = () => {
     return (
       <>
         <div className="col-md-6">
-          <h4 className="text-uppercase text-black-50"> {product.category}</h4>
-          <h1 className="display-5">{product.title}</h1>
-          <p className="lead fw-bolder">
-            {product.rating && product.rating.rate}
-            <i className="fa fa-star"></i>
-          </p>
+          <h5 className="text-uppercase text-black-50">نوع :{port.portType}</h5>
+          <h1 className="display-5">{port.portName}</h1>
           <img
-            src={product.image}
-            alt={product.title}
+            src="/assets/port.jpg"
+            alt={port.portName}
             height="400px"
             width="400px"
           />
-          <h5 className="mt-5">توضیحات تکمیلی</h5>
-          <p className="lead">{product.description}</p>
-          <h5 className="mt-5">مشخصات مدرس</h5>
-          <p className="lead">{product.description}</p>
+          <h5 className="mt-5"> درباره بندر</h5>
+          <p className="lead">{port.about}</p>
         </div>
         <div className="col-md-6">
           <div className="border border-1 p-4">
-            <h5 className="my-3">فهرست سرفصل ها</h5>
-            <p>{product.description}</p>
             <div className="d-flex flex-column align-items-center">
               <h3 className="my-5 text-center">
-                هزینه آموزش: {product.price} تومان
+                سریال بندر: {port.portSerial}
               </h3>
               <button className="btn btn-dark" onClick={handleEditPort}>
                 ویرایش جزئیات <AiOutlinePlus />
@@ -93,9 +86,7 @@ function Port() {
   return (
     <div>
       <div className="container py-5 ">
-        <div className="row py-5">
-          {loading ? <Loading /> : <ShowProduct />}
-        </div>
+        <div className="row py-5">{loading ? <Loading /> : <ShowPort />}</div>
       </div>
       <ToastContainer rtl />
     </div>
