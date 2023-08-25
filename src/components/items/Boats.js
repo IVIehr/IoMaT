@@ -56,7 +56,7 @@ function Boats() {
     setFilter(updatedList);
   };
 
-  const handleNewPort = () => {
+  const handleNewBoat = () => {
     if (userState !== null) {
       setAdd(true);
     } else {
@@ -145,7 +145,7 @@ function Boats() {
             <div>
               <SearchBox itemToSearch="کشتی" />
             </div>
-            <button className="btn btn-dark" onClick={handleNewPort}>
+            <button className="btn btn-dark" onClick={handleNewBoat}>
               افزودن کشتی جدید <AiOutlinePlus />
             </button>
             {add && <AddBoat modal={add} handleClose={() => setAdd(false)}/>}

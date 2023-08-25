@@ -6,11 +6,13 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
+import AddPort from "./addPort";
 
 function Ports() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
+  const [add, setAdd] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   const navigate = useNavigate();
   let componentMouted = true;
@@ -51,9 +53,9 @@ function Ports() {
     );
   };
 
-  const handleNewBoat = () => {
+  const handleNewPort = () => {
     if (userState !== null) {
-      navigate("/cooperation");
+      setAdd(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
     }
@@ -139,9 +141,10 @@ function Ports() {
             <div>
               <SearchBox itemToSearch="بندر" />
             </div>
-            <button className="btn btn-dark" onClick={handleNewBoat}>
+            <button className="btn btn-dark" onClick={handleNewPort}>
               افزودن بندر جدید <AiOutlinePlus />
             </button>
+            {add && <AddPort modal={add} handleClose={() => setAdd(false)} />}
           </div>
         </div>
       </div>
