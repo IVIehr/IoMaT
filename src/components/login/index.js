@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/action";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { toast } from "react-toastify";
 import useLogin from "../../hooks/login/useLogin";
 
 function Login() {

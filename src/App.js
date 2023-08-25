@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { useState } from "react";
 import Home from "./components/main/Home";
 import Navbar from "./components/main/Navbar";
@@ -38,14 +39,17 @@ function App() {
           </Routes>
           <Footer />
         </Router>
-        <ToastContainer
-          rtl
-          position="bottom-right"
-          autoClose={2000}
-          newestOnTop={false}
-          closeOnClick
-        />
+        <div dir="ltr">
+          <ReactQueryDevtools />
+        </div>
       </QueryClientProvider>
+      <ToastContainer
+        rtl
+        position="bottom-right"
+        autoClose={2000}
+        newestOnTop={false}
+        closeOnClick
+      />
     </div>
   );
 }
