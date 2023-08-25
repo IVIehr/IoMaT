@@ -9,18 +9,18 @@ const SearchBox = ({ itemToSearch }) => {
   const [search, setSerach] = useState();
   let componentMouted = true;
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (componentMouted === true) {
-        setData(await response.clone().json());
-      }
-      return () => {
-        componentMouted = false;
-      };
-    };
-    getProducts();
-  }, []);
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     const response = await fetch("https://fakestoreapi.com/products");
+  //     if (componentMouted === true) {
+  //       setData(await response.clone().json());
+  //     }
+  //     return () => {
+  //       componentMouted = false;
+  //     };
+  //   };
+  //   getProducts();
+  // }, []);
 
   const hideModal = () => {
     setShow(false);
