@@ -4,41 +4,30 @@ import { signIn } from "../../redux/action";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import useSignUp from "../../hooks/singup/useSignUp";
 
 const Signup = () => {
   const [modal, setModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
-
-  const registerUser = async (data) => {
-    const userData = { ...data, legal: false };
-    try {
-      await axios
-        .post("http://77.237.82.37:4041/auth/register", userData)
-        .then((res) => {
-          if (res.data.success) {
-            toast.success(res.data.message);
-            const user = {
-              displayName: data.email,
-              email: data.email,
-            };
-            setUser(user);
-            setModal(false);
-          } else {
-            toast.error(res.data.message);
-          }
-        });
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+  const { mutate } = useSignUp();
 
   const setUser = (user) => {
     dispatch(signIn(user));
   };
 
   const onSubmit = (data) => {
-    registerUser(data);
+    mutate({
+      data,
+      successCallBack: () => {
+        const user = {
+          displayName: data.email,
+          email: data.email,
+        };
+        setUser(user);
+        setModal(false);
+      },
+    });
     reset();
   };
 
