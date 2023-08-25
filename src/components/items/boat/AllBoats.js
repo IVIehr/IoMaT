@@ -12,7 +12,7 @@ function Boats() {
   const [boat, setBoat] = useState([]);
   const [filter, setFilter] = useState(boat);
   const [loading, setLoading] = useState(false);
-  const [add, setAdd] = useState(false);
+  const [addBoat, setAddBoat] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   let componentMouted = true;
   const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
@@ -67,7 +67,7 @@ function Boats() {
 
   const handleNewBoat = () => {
     if (userState !== null) {
-      setAdd(true);
+      setAddBoat(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
     }
@@ -157,7 +157,7 @@ function Boats() {
             <button className="btn btn-dark" onClick={handleNewBoat}>
               افزودن کشتی جدید <AiOutlinePlus />
             </button>
-            {add && <AddBoat modal={add} handleClose={() => setAdd(false)} />}
+            {addBoat && <AddBoat handleClose={() => setAddBoat(false)} />}
           </div>
         </div>
       </div>
