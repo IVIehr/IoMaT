@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "./Login";
-import Signup from "./Signup";
-import { signOut } from "../redux/action";
+import Login from "../login";
+import Signup from "../signup";
+import { signOut } from "../../redux/action";
 
 function Navbar() {
   const userState = useSelector((userState) => userState.handleUser);

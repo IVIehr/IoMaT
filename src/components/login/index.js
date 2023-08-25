@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "../redux/action";
-import axios from "axios";
+import { signIn } from "../../redux/action";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const Signup = () => {
+function Login() {
   const [modal, setModal] = useState(false);
-  const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
+  const { register, handleSubmit, reset } = useForm();
 
-  const registerUser = async (data) => {
-    const userData = { ...data, legal: false };
+  // Equal to post data to server
+  const login = async (data) => {
     try {
       await axios
-        .post("http://77.237.82.37:4041/auth/register", userData)
+        .post("http://77.237.82.37:4041/auth/login", data)
         .then((res) => {
           if (res.data.success) {
+            window.localStorage.setItem("AIS:ACCESS_TOKEN", res.data.data.token);
             toast.success(res.data.message, { position: "bottom-right" });
+            setModal(false);
             const user = {
               displayName: data.email,
               email: data.email,
             }
             setUser(user);
-            setModal(false);
           } else {
             toast.error(res.data.message, { position: "bottom-right" });
           }
@@ -38,7 +39,7 @@ const Signup = () => {
   };
 
   const onSubmit = (data) => {
-    registerUser(data);
+    login(data);
     reset();
   };
 
@@ -46,40 +47,32 @@ const Signup = () => {
     <>
       <button
         type="button"
-        className="btn btn-outline-dark ms-2 "
+        className="btn btn-dark"
         onClick={(e) => setModal(true)}
       >
-        <i className="fa fa-user-plus me-1"></i> ثبت نام
+        <i className="fa fa-sign-in me-1 "></i> ورود
       </button>
       {modal === true && (
         <>
           <div className="modal d-block">
-            <section className="modal-main p-4 rounded-3 w-50 overflow-auto h-75">
+            <div className="modal-main p-4 rounded-3 w-50 overflow-auto">
               <div className="d-flex justify-content-end align-items-center mb-1 mt-4 me-4">
                 <button
                   type="button"
                   className="btn-close"
-                  onClick={(e) => {
-                    setModal(false);
-                    reset();
-                  }}
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={() => setModal(false)}
                 ></button>
               </div>
-              <h5 className="login-header mb-4 text-center">ثبت‌نام</h5>
               <div className="modal-body ps-5 pe-5 pt-0">
+                <h5
+                  className="login-header text-start mb-4 text-center"
+                  id="exampleModalLabel"
+                >
+                  ورود به حساب کاربری
+                </h5>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="mb-3 text-end">
-                    <label htmlFor="exampleInpuName" className="form-label">
-                      نام
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="exampleInpuName"
-                      required
-                      {...register("firstName")}
-                    />
-                  </div>
                   <div className="mb-3 text-end">
                     <label htmlFor="exampleInputEmail" className="form-label">
                       ایمیل
@@ -107,45 +100,12 @@ const Signup = () => {
                       {...register("password")}
                     />
                   </div>
-                  <div className="mb-3 text-end">
-                    <label htmlFor="companyName" className="form-label">
-                      نام سازمان
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="companyName"
-                      {...register("companyName")}
-                    />
-                  </div>
-                  <div className="mb-3 text-end">
-                    <label htmlFor="address" className="form-label">
-                      آدرس
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="address"
-                      {...register("address")}
-                    />
-                  </div>
-                  <div className="mb-3 text-end">
-                    <label htmlFor="phoneNumber" className="form-label">
-                      شماره تلفن
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="phoneNumber"
-                      {...register("phoneNumber")}
-                    />
-                  </div>
                   <button type="submit" className="btn btn-dark w-100 my-4">
-                    ثبت نام در دریاگشت{" "}
+                    ورود به دریا گشت{" "}
                   </button>
                   <div className="text-center">
                     <label>
-                      قبلا ثبت نام کرده اید؟
+                      حساب کاربری ندارید؟
                       <a
                         href="#"
                         onClick={() => {
@@ -153,19 +113,19 @@ const Signup = () => {
                           reset();
                         }}
                       >
-                        وارد شوید
+                        ثبت نام کنید
                       </a>{" "}
                     </label>
                   </div>
                 </form>
               </div>
-            </section>
+            </div>
           </div>
-          <ToastContainer rtl />
         </>
       )}
+      <ToastContainer rtl />
     </>
   );
-};
+}
 
-export default Signup;
+export default Login;
