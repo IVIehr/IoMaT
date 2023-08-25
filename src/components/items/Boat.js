@@ -5,23 +5,32 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
+import axios from "axios";
 
 function Boat() {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [boat, setBoat] = useState([]);
   const [loading, setLoading] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   const navigate = useNavigate();
+  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
 
   // Fetch data from API
   useEffect(() => {
-    const getProduct = async () => {
+    const getBoat = async () => {
       setLoading(true);
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      setProduct(await response.json());
+      const response = await axios.get(
+        `http://77.237.82.37:4041/vessel/get?vesselId=${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setBoat(response.data.data);
       setLoading(false);
     };
-    getProduct();
+    getBoat();
   }, []);
 
   // State of not loading the data => show the skeleton
@@ -29,15 +38,14 @@ function Boat() {
     return (
       <>
         <div className="col-md-6">
-          <Skeleton height={400} />
+          <Skeleton height={50} width={100} />
+          <Skeleton height={50} width={300} />
+          <Skeleton height={400} width={400} />
+          <Skeleton height={80} width={250}/>
+          <Skeleton height={80} width={250}/>
         </div>
         <div className="col-md-6" style={{ lineHeight: 2 }}>
-          <Skeleton height={50} width={300} />
-          <Skeleton height={75} />
-          <Skeleton height={25} width={150} />
-          <Skeleton height={50} />
           <Skeleton height={150} />
-          <Skeleton height={50} width={100} style={{ marginLeft: 6 }} />
         </div>
       </>
     );
@@ -51,34 +59,28 @@ function Boat() {
     }
   };
 
-  const ShowProduct = () => {
+  const ShowBoat = () => {
     return (
       <>
         <div className="col-md-6">
-          <h4 className="text-uppercase text-black-50"> {product.category}</h4>
-          <h1 className="display-5">{product.title}</h1>
-          <p className="lead fw-bolder">
-            {product.rating && product.rating.rate}
-            <i className="fa fa-star"></i>
-          </p>
+          <h4 className="text-uppercase text-black-50"> {boat.vesselType}</h4>
+          <h1 className="display-5">{boat.vesselName}</h1>
           <img
-            src={product.image}
-            alt={product.title}
+            src="/assets/vessel.jpg"
+            alt={boat.vesselName}
             height="400px"
             width="400px"
           />
           <h5 className="mt-5">توضیحات تکمیلی</h5>
-          <p className="lead">{product.description}</p>
-          <h5 className="mt-5">مشخصات مدرس</h5>
-          <p className="lead">{product.description}</p>
+          <p className="lead">{boat.about}</p>
+          <h5 className="mt-5">مشخصات ایجاد کننده</h5>
+          <p className="lead">{boat.ownerEmail}</p>
         </div>
         <div className="col-md-6">
           <div className="border border-1 p-4">
-            <h5 className="my-3">فهرست سرفصل ها</h5>
-            <p>{product.description}</p>
             <div className="d-flex flex-column align-items-center">
               <h3 className="my-5 text-center">
-                هزینه آموزش: {product.price} تومان
+                سریال کشتی:{boat.vesselSerial}
               </h3>
               <button className="btn btn-dark" onClick={handleEditBoat}>
                 ویرایش جزئیات <AiOutlinePlus />
@@ -93,9 +95,7 @@ function Boat() {
   return (
     <div>
       <div className="container py-5 ">
-        <div className="row py-5">
-          {loading ? <Loading /> : <ShowProduct />}
-        </div>
+        <div className="row py-5">{loading ? <Loading /> : <ShowBoat />}</div>
       </div>
       <ToastContainer rtl />
     </div>

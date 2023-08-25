@@ -11,6 +11,7 @@
   padding : 0 !important;
   padding-bottom: 3px !important;
   padding-top: 3px !important;
+  width: max-content;
 }
 
 .nav-link.active{
