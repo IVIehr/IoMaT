@@ -6,7 +6,7 @@ function Cooperation() {
       <div className="container mb-5">
         <div className="row">
           <div className="col-12 text-center py-4 my-4 dark-text">
-            <h4>روند همکاری با فرادرس از ارسال عنوان تا ضبط نهایی</h4>
+            <h4>روند همکاری با دریاگشت</h4>
             <hr />
           </div>
         </div>
