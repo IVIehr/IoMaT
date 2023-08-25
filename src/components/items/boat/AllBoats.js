@@ -119,7 +119,6 @@ function Boats() {
                 <img
                   src="/assets/vessel.jpg"
                   alt={vessel.vesselName}
-                  height="250px"
                   className="card-img-top"
                 />
                 <div className="card-body">
