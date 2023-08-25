@@ -1,5 +1,5 @@
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const About = () => {
     if (userState !== null) {
       navigate("/cooperation");
     } else {
-      toast.warning("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.warning("لطفا ابتدا وارد شوید");
     }
   };
   return (
@@ -32,8 +32,8 @@ const About = () => {
             </h5>
             <p className="mb-4 lh-large">
               سامانهٔ AIS یک فناوری جدید که به کمک دستگاه‌های مخصوص، اطلاعاتی در
-              مورد وضعیت و مکان کشتی‌ها و ناوگان دریایی ارائه می‌دهد. از این جهت،
-              AIS نقش مهمی در جلوگیری از تصادفات دریایی دارد. این سامانه به
+              مورد وضعیت و مکان کشتی‌ها و ناوگان دریایی ارائه می‌دهد. از این
+              جهت، AIS نقش مهمی در جلوگیری از تصادفات دریایی دارد. این سامانه به
               مسئولان دریایی و ناوبران امکان می‌دهد تا به شکل دقیق‌تری مسیر خود
               را برنامه‌ریزی کنند و در مواجهه با مخاطرات بهتر عمل کنند. همچنین،
               AIS در حفاظت از امنیت منطقهٔ خلیج فارس نقش مهمی دارد. با استفاده
@@ -54,12 +54,11 @@ const About = () => {
             >
               مایل به همکاری هستید؟
             </button>
-            <ToastContainer rtl />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default About;

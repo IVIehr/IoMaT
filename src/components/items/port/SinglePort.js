@@ -2,30 +2,23 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { FaPencilAlt } from "react-icons/fa";
-import axios from "axios";
 import EditPort from "./editPort";
+import useGetPort from "../../../hooks/port/useGetPort";
 
 function Port() {
   const { id } = useParams();
   const [port, setPort] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
+  const { data, isLoading } = useGetPort({ portId: id });
 
-  // Fetch data from API
   useEffect(() => {
-    const getPort = async () => {
-      setLoading(true);
-      const response = await axios.get(
-        `http://77.237.82.37:4041/port/get/id?portId=${id}`
-      );
-      setPort(response.data.data[0]);
-      setLoading(false);
-    };
-    getPort();
-  }, []);
+    if (data) {
+      setPort(data.data[0]);
+    }
+  }, [data]);
 
   // State of not loading the data => show the skeleton
   const Loading = () => {
@@ -45,10 +38,11 @@ function Port() {
   };
 
   const handleEditPort = () => {
-    if (userState !== null) { // && access == "owner"
+    if (userState !== null) {
+      // && access == "owner"
       setEditModal(true);
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.info("لطفا ابتدا وارد شوید");
     }
   };
 
@@ -76,7 +70,12 @@ function Port() {
               <button className="btn btn-dark" onClick={handleEditPort}>
                 ویرایش جزئیات <FaPencilAlt />
               </button>
-              {editModal && <EditPort prevData={port} handleClose={() => setEditModal(false)}/>}
+              {editModal && (
+                <EditPort
+                  prevData={port}
+                  handleClose={() => setEditModal(false)}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -87,9 +86,8 @@ function Port() {
   return (
     <div>
       <div className="container py-5 ">
-        <div className="row py-5">{loading ? <Loading /> : <ShowPort />}</div>
+        <div className="row py-5">{isLoading ? <Loading /> : <ShowPort />}</div>
       </div>
-      <ToastContainer rtl />
     </div>
   );
 }

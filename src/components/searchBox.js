@@ -1,5 +1,5 @@
 import { useState, useEffect, React } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import ResultModal from "../modal/ResultModal";
 
 const SearchBox = ({ itemToSearch }) => {
@@ -9,18 +9,18 @@ const SearchBox = ({ itemToSearch }) => {
   const [search, setSerach] = useState();
   let componentMouted = true;
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (componentMouted === true) {
-        setData(await response.clone().json());
-      }
-      return () => {
-        componentMouted = false;
-      };
-    };
-    getProducts();
-  }, []);
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     const response = await fetch("https://fakestoreapi.com/products");
+  //     if (componentMouted === true) {
+  //       setData(await response.clone().json());
+  //     }
+  //     return () => {
+  //       componentMouted = false;
+  //     };
+  //   };
+  //   getProducts();
+  // }, []);
 
   const hideModal = () => {
     setShow(false);
@@ -38,9 +38,7 @@ const SearchBox = ({ itemToSearch }) => {
       setShow(true);
       setSerach(filtered);
     } else {
-      toast.warning(`${itemToSearch} مورد نظر پیدا نشد`, {
-        position: "bottom-right",
-      });
+      toast.warning(`${itemToSearch} مورد نظر پیدا نشد`);
     }
   };
 
@@ -65,7 +63,6 @@ const SearchBox = ({ itemToSearch }) => {
       >
         جستجو
       </button>
-      <ToastContainer rtl />
       <ResultModal show={show} handleClose={hideModal} data={search} />
     </form>
   );

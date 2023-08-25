@@ -3,35 +3,24 @@ import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../../searchBox";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddPort from "./addPort";
-import axios from "axios";
+import useGetAllPorts from "../../../hooks/port/useGetAllPorts";
 
 function Ports() {
   const [ports, setports] = useState([]);
   const [filter, setFilter] = useState(ports);
-  const [loading, setLoading] = useState(false);
   const [addPort, setAddPort] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
-  let componentMouted = true;
+  const { data, isLoading } = useGetAllPorts();
 
   useEffect(() => {
-    const getPorts = async () => {
-      setLoading(true);
-      const response = await axios.get("http://77.237.82.37:4041/port/get");
-      if (componentMouted === true) {
-        setports(response.data.data);
-        setFilter(response.data.data);
-        setLoading(false);
-      }
-      return () => {
-        componentMouted = false;
-      };
-    };
-
-    getPorts();
-  }, []);
+    if (data) {
+      setports(data.data);
+      setFilter(data.data);
+    }
+  }, [data]);
 
   const Loading = () => {
     return (
@@ -56,7 +45,7 @@ function Ports() {
     if (userState !== null) {
       setAddPort(true);
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.info("لطفا ابتدا وارد شوید");
     }
   };
 
@@ -108,9 +97,7 @@ function Ports() {
                   className="card-img-top"
                 />
                 <div className="card-body">
-                  <h5 className="card-title mb-0">
-                    {port.portName}
-                  </h5>
+                  <h5 className="card-title mb-0">{port.portName}</h5>
                   <p className="card-text lead fw-bold">{port.portSerial}</p>
                   <NavLink
                     to={`/ports/${port.portId}`}
@@ -147,9 +134,8 @@ function Ports() {
         </div>
       </div>
       <div className="row d-flex justify-content-center">
-        {loading ? <Loading /> : <ShowProducts />}
+        {isLoading ? <Loading /> : <ShowProducts />}
       </div>
-      <ToastContainer rtl />
     </div>
   );
 }
