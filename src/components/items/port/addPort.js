@@ -1,35 +1,18 @@
 import React from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import useAddPort from "../../../hooks/port/useAddPort";
 
 const AddPort = ({ handleClose }) => {
   const { register, handleSubmit, reset } = useForm();
-  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
-
-  const registerPort = async (data) => {
-    try {
-      await axios
-        .post("http://77.237.82.37:4041/port/add", data, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.data.success) {
-            toast.success(res.data.message);
-            handleClose();
-          } else {
-            toast.error(res.data.message);
-          }
-        });
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+  const { mutate } = useAddPort();
 
   const onSubmit = (data) => {
-    registerPort(data);
+    mutate({
+      data,
+      successCallBack: () => {
+        handleClose();
+      },
+    });
     reset();
   };
 
