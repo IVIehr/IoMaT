@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 
 const AddBoat = ({ modal, handleClose }) => {
   const { register, handleSubmit, reset } = useForm();
-  const dispatch = useDispatch();
+  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
 
   const registerBoat = async (data) => {
     const boatData = { ...data, inTransit: false };
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTI5NzY0NzYsImVtYWlsIjoibS5uYXZpZGltZWhyQGdtYWlsLmNvbSIsImlhdCI6MTY5Mjk0MDQ3Nn0.cmoFLVh1PpUPpGutp_0p5N4AqNMh_WVUvPAeUWtEJLs";
     try {
       await axios
         .post("http://77.237.82.37:4041/vessel/add", boatData, {
@@ -26,16 +23,11 @@ const AddBoat = ({ modal, handleClose }) => {
           } else {
             toast.error(res.data.message, { position: "bottom-right" });
           }
-          // setUser(auth.user);
         });
     } catch (error) {
       alert(error.message);
     }
   };
-
-  // const setUser = (user) => {
-  //   dispatch(signIn(user));
-  // };
 
   const onSubmit = (data) => {
     registerBoat(data);

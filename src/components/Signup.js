@@ -18,11 +18,15 @@ const Signup = () => {
         .then((res) => {
           if (res.data.success) {
             toast.success(res.data.message, { position: "bottom-right" });
+            const user = {
+              displayName: data.email,
+              email: data.email,
+            }
+            setUser(user);
             setModal(false);
           } else {
             toast.error(res.data.message, { position: "bottom-right" });
           }
-          // setUser(auth.user);
         });
     } catch (error) {
       alert(error.message);

@@ -17,9 +17,14 @@ function Login() {
         .post("http://77.237.82.37:4041/auth/login", data)
         .then((res) => {
           if (res.data.success) {
+            window.localStorage.setItem("AIS:ACCESS_TOKEN", res.data.data.token);
             toast.success(res.data.message, { position: "bottom-right" });
             setModal(false);
-            // setUser(auth.user);
+            const user = {
+              displayName: data.email,
+              email: data.email,
+            }
+            setUser(user);
           } else {
             toast.error(res.data.message, { position: "bottom-right" });
           }

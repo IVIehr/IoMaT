@@ -11,6 +11,7 @@ function Navbar() {
 
   const logout = () => {
     dispatch(signOut());
+    window.localStorage.clear();
   };
 
   return (

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../searchBox";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddBoat from "./addBoat";
@@ -13,8 +12,7 @@ function Boats() {
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
   const [add , setAdd] = useState(false);
-  // const userState = useSelector((userState) => userState.handleUser);
-  const navigate = useNavigate();
+  const userState = useSelector((userState) => userState.handleUser);
   let componentMouted = true;
 
   useEffect(() => {
@@ -59,11 +57,10 @@ function Boats() {
   };
 
   const handleNewPort = () => {
-    if (false) {
-      navigate("/cooperation");
-    } else {
-      // toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+    if (userState !== null) {
       setAdd(true);
+    } else {
+      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
     }
   };
 
