@@ -3,16 +3,16 @@ import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { AiOutlinePlus } from "react-icons/ai";
+import { FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
+import EditBoat from "./editBoat";
 
 function Boat() {
   const { id } = useParams();
   const [boat, setBoat] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editModal , setEditModal] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
-  const navigate = useNavigate();
   const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
 
   // Fetch data from API
@@ -52,8 +52,8 @@ function Boat() {
   };
 
   const handleEditBoat = () => {
-    if (userState !== null) {
-      navigate("/cooperation");
+    if (userState !== null) { // && access == "owner"
+      setEditModal(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
     }
@@ -83,8 +83,9 @@ function Boat() {
                 سریال کشتی:{boat.vesselSerial}
               </h3>
               <button className="btn btn-dark" onClick={handleEditBoat}>
-                ویرایش جزئیات <AiOutlinePlus />
+                ویرایش جزئیات <FaPencilAlt />
               </button>
+              {editModal && <EditBoat prevData={boat} handleClose={() => setEditModal(false)}/>}
             </div>
           </div>
         </div>

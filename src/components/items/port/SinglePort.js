@@ -3,16 +3,16 @@ import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { AiOutlinePlus } from "react-icons/ai";
+import { FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
+import EditPort from "./editPort";
 
 function Port() {
   const { id } = useParams();
   const [port, setPort] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
-  const navigate = useNavigate();
 
   // Fetch data from API
   useEffect(() => {
@@ -45,8 +45,8 @@ function Port() {
   };
 
   const handleEditPort = () => {
-    if (userState !== null) {
-      navigate("/cooperation");
+    if (userState !== null) { // && access == "owner"
+      setEditModal(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
     }
@@ -74,8 +74,9 @@ function Port() {
                 سریال بندر: {port.portSerial}
               </h3>
               <button className="btn btn-dark" onClick={handleEditPort}>
-                ویرایش جزئیات <AiOutlinePlus />
+                ویرایش جزئیات <FaPencilAlt />
               </button>
+              {editModal && <EditPort prevData={port} handleClose={() => setEditModal(false)}/>}
             </div>
           </div>
         </div>
