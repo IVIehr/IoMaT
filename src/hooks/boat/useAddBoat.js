@@ -1,9 +1,10 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function useAddBoat() {
   const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
+  const queryClient = useQueryClient();
 
   return useMutation(
     async (values) => {
@@ -25,6 +26,7 @@ export default function useAddBoat() {
         const { successCallBack } = values;
         if (response.success) {
           toast.success(response.message);
+          queryClient.invalidateQueries("all-boats");
           successCallBack();
         } else {
           toast.error(response.message);

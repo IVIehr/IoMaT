@@ -6,40 +6,22 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddBoat from "./addBoat";
-import axios from "axios";
+import useGetAllBoats from "../../../hooks/boat/useGetAllBoats";
 
 function Boats() {
   const [boat, setBoat] = useState([]);
   const [filter, setFilter] = useState(boat);
-  const [loading, setLoading] = useState(false);
   const [addBoat, setAddBoat] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
-  let componentMouted = true;
-  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
+
+  const { data, isLoading } = useGetAllBoats();
 
   useEffect(() => {
-    const getBoats = async () => {
-      setLoading(true);
-      const response = await axios.get(
-        "http://77.237.82.37:4041/vessel/get/all",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (componentMouted === true) {
-        setBoat(response.data.data);
-        setFilter(response.data.data);
-        setLoading(false);
-      }
-      return () => {
-        componentMouted = false;
-      };
-    };
-
-    getBoats();
-  }, []);
+    if (data) {
+      setBoat(data.data);
+      setFilter(data.data);
+    }
+  }, [data]);
 
   const Loading = () => {
     return (
@@ -123,7 +105,7 @@ function Boats() {
                 />
                 <div className="card-body">
                   <h5 className="card-title mb-0">
-                    {vessel.vesselName.substring(0, 12)}...
+                    {vessel.vesselName}
                   </h5>
                   <p className="card-text lead fw-bold">{vessel.vesselSerial}</p>
                   <NavLink
@@ -161,7 +143,7 @@ function Boats() {
         </div>
       </div>
       <div className="row d-flex justify-content-center">
-        {loading ? <Loading /> : <ShowProducts />}
+        {isLoading ? <Loading /> : <ShowProducts />}
       </div>
     </div>
   );
