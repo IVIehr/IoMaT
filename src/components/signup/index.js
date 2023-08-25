@@ -1,30 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signIn } from "../../redux/action";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import useSignUp from "../../hooks/singup/useSignUp";
 
 const Signup = () => {
   const [modal, setModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
-  const dispatch = useDispatch();
   const { mutate } = useSignUp();
-
-  const setUser = (user) => {
-    dispatch(signIn(user));
-  };
 
   const onSubmit = (data) => {
     mutate({
       data,
       successCallBack: () => {
-        const user = {
-          displayName: data.email,
-          email: data.email,
-        };
-        setUser(user);
         setModal(false);
       },
     });
