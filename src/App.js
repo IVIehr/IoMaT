@@ -10,8 +10,8 @@ import Ports from "./components/items/port/AllPorts";
 import Port from "./components/items/port/SinglePort";
 import About from "./components/about";
 import Cooperation from "./components/Cooperation";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function App() {
   return (
@@ -27,10 +27,17 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/not-found" element={<NotFound />} />
-          <Route to="/not-found"/>
+          <Route to="/not-found" />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
+      <ToastContainer
+        rtl
+        position="bottom-right"
+        autoClose={2000}
+        newestOnTop={false}
+        closeOnClick
+      />
     </div>
   );
 }

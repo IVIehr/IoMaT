@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../../searchBox";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddPort from "./addPort";
 import axios from "axios";
@@ -56,7 +56,7 @@ function Ports() {
     if (userState !== null) {
       setAddPort(true);
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.info("لطفا ابتدا وارد شوید");
     }
   };
 
@@ -108,9 +108,7 @@ function Ports() {
                   className="card-img-top"
                 />
                 <div className="card-body">
-                  <h5 className="card-title mb-0">
-                    {port.portName}
-                  </h5>
+                  <h5 className="card-title mb-0">{port.portName}</h5>
                   <p className="card-text lead fw-bold">{port.portSerial}</p>
                   <NavLink
                     to={`/ports/${port.portId}`}
@@ -149,7 +147,6 @@ function Ports() {
       <div className="row d-flex justify-content-center">
         {loading ? <Loading /> : <ShowProducts />}
       </div>
-      <ToastContainer rtl />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
 import EditBoat from "./editBoat";
@@ -11,7 +11,7 @@ function Boat() {
   const { id } = useParams();
   const [boat, setBoat] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [editModal , setEditModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const userState = useSelector((userState) => userState.handleUser);
   const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
 
@@ -41,8 +41,8 @@ function Boat() {
           <Skeleton height={50} width={100} />
           <Skeleton height={50} width={300} />
           <Skeleton height={400} width={400} />
-          <Skeleton height={80} width={250}/>
-          <Skeleton height={80} width={250}/>
+          <Skeleton height={80} width={250} />
+          <Skeleton height={80} width={250} />
         </div>
         <div className="col-md-6" style={{ lineHeight: 2 }}>
           <Skeleton height={150} />
@@ -52,10 +52,11 @@ function Boat() {
   };
 
   const handleEditBoat = () => {
-    if (userState !== null) { // && access == "owner"
+    if (userState !== null) {
+      // && access == "owner"
       setEditModal(true);
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.info("لطفا ابتدا وارد شوید");
     }
   };
 
@@ -85,7 +86,12 @@ function Boat() {
               <button className="btn btn-dark" onClick={handleEditBoat}>
                 ویرایش جزئیات <FaPencilAlt />
               </button>
-              {editModal && <EditBoat prevData={boat} handleClose={() => setEditModal(false)}/>}
+              {editModal && (
+                <EditBoat
+                  prevData={boat}
+                  handleClose={() => setEditModal(false)}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -98,7 +104,6 @@ function Boat() {
       <div className="container py-5 ">
         <div className="row py-5">{loading ? <Loading /> : <ShowBoat />}</div>
       </div>
-      <ToastContainer rtl />
     </div>
   );
 }

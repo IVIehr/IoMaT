@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "../../searchBox";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddBoat from "./addBoat";
 import axios from "axios";
@@ -69,7 +69,7 @@ function Boats() {
     if (userState !== null) {
       setAddBoat(true);
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.info("لطفا ابتدا وارد شوید");
     }
   };
 
@@ -164,7 +164,6 @@ function Boats() {
       <div className="row d-flex justify-content-center">
         {loading ? <Loading /> : <ShowProducts />}
       </div>
-      <ToastContainer rtl />
     </div>
   );
 }

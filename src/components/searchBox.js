@@ -1,5 +1,5 @@
 import { useState, useEffect, React } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import ResultModal from "../modal/ResultModal";
 
 const SearchBox = ({ itemToSearch }) => {
@@ -38,9 +38,7 @@ const SearchBox = ({ itemToSearch }) => {
       setShow(true);
       setSerach(filtered);
     } else {
-      toast.warning(`${itemToSearch} مورد نظر پیدا نشد`, {
-        position: "bottom-right",
-      });
+      toast.warning(`${itemToSearch} مورد نظر پیدا نشد`);
     }
   };
 
@@ -65,7 +63,6 @@ const SearchBox = ({ itemToSearch }) => {
       >
         جستجو
       </button>
-      <ToastContainer rtl />
       <ResultModal show={show} handleClose={hideModal} data={search} />
     </form>
   );

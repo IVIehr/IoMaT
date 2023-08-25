@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
 import EditPort from "./editPort";
@@ -48,7 +48,7 @@ function Port() {
     if (userState !== null) { // && access == "owner"
       setEditModal(true);
     } else {
-      toast.info("لطفا ابتدا وارد شوید", { position: "bottom-right" });
+      toast.info("لطفا ابتدا وارد شوید");
     }
   };
 
@@ -89,7 +89,6 @@ function Port() {
       <div className="container py-5 ">
         <div className="row py-5">{loading ? <Loading /> : <ShowPort />}</div>
       </div>
-      <ToastContainer rtl />
     </div>
   );
 }

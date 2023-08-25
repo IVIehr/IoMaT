@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/action";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 function Login() {
   const [modal, setModal] = useState(false);
@@ -18,7 +18,7 @@ function Login() {
         .then((res) => {
           if (res.data.success) {
             window.localStorage.setItem("AIS:ACCESS_TOKEN", res.data.data.token);
-            toast.success(res.data.message, { position: "bottom-right" });
+            toast.success(res.data.message);
             setModal(false);
             const user = {
               displayName: data.email,
@@ -26,7 +26,7 @@ function Login() {
             }
             setUser(user);
           } else {
-            toast.error(res.data.message, { position: "bottom-right" });
+            toast.error(res.data.message);
           }
         });
     } catch (error) {
@@ -123,7 +123,6 @@ function Login() {
           </div>
         </>
       )}
-      <ToastContainer rtl />
     </>
   );
 }
