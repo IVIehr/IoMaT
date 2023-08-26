@@ -1,16 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import Login from "../login";
 import Signup from "../signup";
-import { signOut } from "../../redux/action";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atom/user";
 
-function Navbar() {
-  const userState = useSelector((userState) => userState.handleUser);
-  const dispatch = useDispatch();
+const Navbar = () => {
+  const [human, setHuman] = useRecoilState(userState);
 
   const logout = () => {
-    dispatch(signOut());
+    setHuman(null);
     window.localStorage.clear();
   };
 
@@ -57,13 +56,13 @@ function Navbar() {
             </ul>
             <div className="buttons d-flex">
               <div className="btn d-flex align-items-center">
-                {userState && userState?.state !== null ? (
+                {human ? (
                   <>
                     <div>
                       {/* Check if the user is logged in or not */}
-                      {userState?.state?.displayName !== null
-                        ? userState?.state?.displayName
-                        : userState?.state?.email}
+                      {human?.name !== null
+                        ? human?.name
+                        : human?.email}
                     </div>
                     <button
                       type="button"

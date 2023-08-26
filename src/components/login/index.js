@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useLogin from "../../hooks/login/useLogin";
+import { useSetRecoilState } from "recoil";
+import { userState } from "../../atom/user";
 
 function Login() {
   const [modal, setModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
+  const setHuman = useSetRecoilState(userState);
+
   const { mutate } = useLogin();
 
   const onSubmit = (data) => {
@@ -12,6 +16,7 @@ function Login() {
       data,
       successCallBack: () => {
         setModal(false);
+        setHuman({ name: "Mehrnoosh" });
       },
     });
     reset();
