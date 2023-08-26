@@ -45,6 +45,17 @@ const AddPort = ({ handleClose }) => {
               />
             </div>
             <div className="mb-3 text-end">
+              <label htmlFor="portType" className="form-label">
+                نوع بندر
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="portType"
+                {...register("portType")}
+              />
+            </div>
+            <div className="mb-3 text-end">
               <label htmlFor="portSerial" className="form-label">
                 سریال بندر
               </label>
@@ -57,14 +68,15 @@ const AddPort = ({ handleClose }) => {
               />
             </div>
             <div className="mb-3 text-end">
-              <label htmlFor="portType" className="form-label">
-                نوع بندر
+              <label htmlFor="country" className="form-label">
+                کشور
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="portType"
-                {...register("portType")}
+                id="country"
+                required
+                {...register("country")}
               />
             </div>
             <div className="mb-3 text-end">
@@ -85,6 +97,18 @@ const AddPort = ({ handleClose }) => {
                   {...register("longitude")}
                 />
               </div>
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="about" className="form-label">
+                درباره بندر
+              </label>
+              <textarea
+                rows={5}
+                type="text"
+                className="form-control"
+                id="about"
+                {...register("about")}
+              />
             </div>
             <button type="submit" className="btn btn-dark w-100 my-4">
               تایید

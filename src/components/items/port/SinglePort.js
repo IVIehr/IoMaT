@@ -16,7 +16,7 @@ function Port() {
 
   useEffect(() => {
     if (data) {
-      setPort(data.data[0]);
+      setPort(data.data);
     }
   }, [data]);
 
@@ -50,16 +50,17 @@ function Port() {
     return (
       <>
         <div className="col-md-6">
+          <h2>{port.portName}</h2>
           <h5 className="text-uppercase text-black-50">نوع :{port.portType}</h5>
-          <h1 className="display-5">{port.portName}</h1>
+          <h5 className="text-black-50">کشور :{port.country}</h5>
           <img
             src="/assets/port.jpg"
             alt={port.portName}
             height="400px"
             width="400px"
           />
-          <h5 className="mt-5"> درباره بندر</h5>
-          <p className="lead">{port.about}</p>
+          <h5 className="mt-5 text-black-50"> درباره بندر</h5>
+          <p>{port.about}</p>
         </div>
         <div className="col-md-6">
           <div className="border border-1 p-4">

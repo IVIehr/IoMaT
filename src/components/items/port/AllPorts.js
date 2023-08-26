@@ -50,45 +50,43 @@ function Ports() {
   };
 
   const filterProduct = (cat) => {
-    const updatedList = ports.filter((x) => x.portType === cat);
+    const updatedList = ports.filter((x) => x.country === cat);
     setFilter(updatedList);
   };
 
   const ShowProducts = () => {
     return (
       <>
-        {filter.length !== 0 && (
-          <div className="container buttons d-flex justify-content-center mb-5">
-            <div className="row">
-              <div className="col">
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => setFilter(ports)}
-                >
-                  همه
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("men's clothing")}
-                >
-                  دریای خزر
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("women's clothing")}
-                >
-                  خلیج فارس
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("jewelery")}
-                >
-                  دریای عمان
-                </button>
-              </div>
+        <div className="container buttons d-flex justify-content-center mb-5">
+          <div className="row">
+            <div className="col">
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => setFilter(ports)}
+              >
+                همه
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("ایران")}
+              >
+                ایران
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("ترکیه")}
+              >
+                ترکیه
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("عراق")}
+              >
+                عراق
+              </button>
             </div>
           </div>
-        )}
+        </div>
         {filter.length !== 0 ? (
           filter.map((port) => {
             return (
