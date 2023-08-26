@@ -1,5 +1,3 @@
-import './modal.css';
-
 function Modal({ handleClose, show}){
   const showHideClassName = show ? "modal d-block" : "modal d-none";
 
