@@ -1,37 +1,28 @@
 import React from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import useEditBoat from "../../../hooks/boat/useEditBoat";
 
 const EditBoat = ({ prevData, handleClose }) => {
   const { register, handleSubmit, reset } = useForm();
-  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
+  const { mutate } = useEditBoat();
 
-  const editBoatService = async (data) => {
-    const boatData = { ...data, inTransit: false };
-    try {
-      await axios
-        .post("http://77.237.82.37:4041/vessel/add", boatData, {
-          // required patch service to update vessel
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.data.success) {
-            toast.success(res.data.message);
-            handleClose();
-          } else {
-            toast.error(res.data.message);
-          }
-        });
-    } catch (error) {
-      alert(error.message);
-    }
+  const removeEmptyFields = (data) => {
+    Object.keys(data).forEach((key) => {
+      if (data[key] === "" || data[key] == null) {
+        delete data[key];
+      }
+    });
+    return data;
   };
 
   const onSubmit = (data) => {
-    // editBoatService(data);
+    const cleanData = removeEmptyFields(data);
+    mutate({
+      data: {...cleanData, vesselId: prevData.vesselId},
+      successCallBack: () => {
+        handleClose();
+      },
+    });
     reset();
   };
 
@@ -53,51 +44,74 @@ const EditBoat = ({ prevData, handleClose }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 text-end">
               <label htmlFor="vesselName" className="form-label">
-                نام کشتی
+                نام
               </label>
               <input
                 type="text"
                 className="form-control text-secondary"
                 id="vesselName"
-                value={prevData.vesselName}
-                required
+                placeholder={prevData.vesselName}
                 {...register("vesselName")}
               />
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="vesselSerial" className="form-label">
-                سریال کشتی
+                شماره سریال
               </label>
               <input
                 type="text"
                 className="form-control text-secondary"
                 id="vesselSerial"
-                value={prevData.vesselSerial}
-                required
+                placeholder={prevData.vesselSerial}
                 {...register("vesselSerial")}
               />
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="vesselType" className="form-label">
-                نوع کشتی
+                نوع
               </label>
               <input
                 type="text"
                 className="form-control text-secondary"
                 id="vesselType"
-                value={prevData.vesselType}
+                placeholder={prevData.vesselType}
                 {...register("vesselType")}
               />
             </div>
             <div className="mb-3 text-end">
-              <label htmlFor="about" className="form-label">
-                درباره کشتی
+              <label htmlFor="vesselSize" className="form-label">
+                ابعاد
               </label>
               <input
                 type="text"
                 className="form-control text-secondary"
+                id="vesselSize"
+                placeholder={prevData.vesselSize}
+                {...register("vesselSize")}
+              />
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="flag" className="form-label">
+                کشور
+              </label>
+              <input
+                type="text"
+                className="form-control text-secondary"
+                id="flag"
+                placeholder={prevData.flag}
+                {...register("flag")}
+              />
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="about" className="form-label">
+                درباره
+              </label>
+              <textarea
+                type="text"
+                rows={5}
+                className="form-control text-secondary"
                 id="about"
-                value={prevData.about}
+                placeholder={prevData.about}
                 {...register("about")}
               />
             </div>

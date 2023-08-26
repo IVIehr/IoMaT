@@ -34,7 +34,7 @@ const AddPort = ({ handleClose }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 text-end">
               <label htmlFor="portName" className="form-label">
-                نام بندر
+                نام
               </label>
               <input
                 type="text"
@@ -46,7 +46,7 @@ const AddPort = ({ handleClose }) => {
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="portType" className="form-label">
-                نوع بندر
+                نوع
               </label>
               <input
                 type="text"
@@ -57,7 +57,7 @@ const AddPort = ({ handleClose }) => {
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="portSerial" className="form-label">
-                سریال بندر
+                شماره سریال
               </label>
               <input
                 type="text"
@@ -100,7 +100,7 @@ const AddPort = ({ handleClose }) => {
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="about" className="form-label">
-                درباره بندر
+                درباره
               </label>
               <textarea
                 rows={5}
