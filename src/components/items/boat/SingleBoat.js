@@ -66,8 +66,9 @@ function Boat() {
     return (
       <>
         <div className="col-md-6">
-          <h4 className="text-uppercase text-black-50"> {boat.vesselType}</h4>
-          <h1 className="display-5">{boat.vesselName}</h1>
+          <h2>{boat.vesselName}</h2>
+          <h5 className="text-uppercase text-black-50">نوع: {boat.vesselType}</h5>
+          <h5 className="text-black-50">کشور: {boat.flag}</h5>
           <img
             src="/assets/vessel.jpg"
             alt={boat.vesselName}
@@ -112,9 +113,9 @@ function Boat() {
             >
               <TiLocation />
               <div className="d-flex">
-                <div class="separator"></div>
+                <div className="separator"></div>
                 <GiFishingBoat className="blink_me fs-3" />
-                <div class="separator"></div>
+                <div className="separator"></div>
               </div>
               <IoMdLocate />
             </div>

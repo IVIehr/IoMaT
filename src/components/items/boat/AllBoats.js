@@ -55,7 +55,7 @@ function Boats() {
     }
   };
 
-  const ShowProducts = () => {
+  const ShowBoats = () => {
     return (
       <>
         <div className="container buttons d-flex justify-content-center mb-5">
@@ -152,7 +152,7 @@ function Boats() {
         </div>
       </div>
       <div className="row d-flex justify-content-center">
-        {isLoading ? <Loading /> : <ShowProducts />}
+        {isLoading ? <Loading /> : <ShowBoats />}
       </div>
     </div>
   );
