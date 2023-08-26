@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
-import SearchBox from "../../searchBox";
+import SearchBox from "./searchBoxBoat";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -42,10 +42,16 @@ function Boats() {
     );
   };
 
-  const filterProduct = (cat) => {
+  const filterBoat = (cat) => {
     const updatedList = boat.filter((x) => x.vesselType === cat);
     setFilter(updatedList);
   };
+
+  const searchBoats = (result) =>{
+    if(result){
+      setFilter(result);
+    }
+  }
 
   const handleNewBoat = () => {
     if (userState !== null) {
@@ -69,25 +75,25 @@ function Boats() {
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("باری")}
+                onClick={() => filterBoat("باری")}
               >
                 ناوبر باری
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("ship")}
+                onClick={() => filterBoat("ship")}
               >
                 ناوبر نفتی
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("jewelery")}
+                onClick={() => filterBoat("jewelery")}
               >
                 ناوبر تفریحی
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("electronics")}
+                onClick={() => filterBoat("electronics")}
               >
                 ناوبر آب و هوا
               </button>
@@ -142,7 +148,7 @@ function Boats() {
           <hr />
           <div className="d-flex flex-row align-items-center justify-content-between mt-4">
             <div>
-              <SearchBox itemToSearch="کشتی" />
+              <SearchBox handleResult={searchBoats} />
             </div>
             <button className="btn btn-dark" onClick={handleNewBoat}>
               افزودن کشتی جدید <AiOutlinePlus />

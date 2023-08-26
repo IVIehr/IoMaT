@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
-import SearchBox from "../../searchBox";
+import SearchBox from "./searchBoxPort";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -49,10 +49,16 @@ function Ports() {
     }
   };
 
-  const filterProduct = (cat) => {
+  const filterPorts = (cat) => {
     const updatedList = ports.filter((x) => x.country === cat);
     setFilter(updatedList);
   };
+
+  const searchPorts = (result) =>{
+    if(result){
+      setFilter(result);
+    }
+  }
 
   const ShowProducts = () => {
     return (
@@ -68,19 +74,19 @@ function Ports() {
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("ایران")}
+                onClick={() => filterPorts("ایران")}
               >
                 ایران
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("ترکیه")}
+                onClick={() => filterPorts("ترکیه")}
               >
                 ترکیه
               </button>
               <button
                 className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("عراق")}
+                onClick={() => filterPorts("عراق")}
               >
                 عراق
               </button>
@@ -130,7 +136,7 @@ function Ports() {
           <hr />
           <div className="d-flex flex-row align-items-center justify-content-between mt-4">
             <div>
-              <SearchBox itemToSearch="بندر" />
+              <SearchBox handleResult={searchPorts}/>
             </div>
             <button className="btn btn-dark" onClick={handleNewPort}>
               افزودن بندر جدید <AiOutlinePlus />
