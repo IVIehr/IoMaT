@@ -57,65 +57,73 @@ function Ports() {
   const ShowProducts = () => {
     return (
       <>
-        <div className="container buttons d-flex justify-content-center mb-5">
-          <div className="row">
-            <div className="col">
-              <button
-                className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => setFilter(ports)}
-              >
-                همه
-              </button>
-              <button
-                className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("men's clothing")}
-              >
-                دریای خزر
-              </button>
-              <button
-                className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("women's clothing")}
-              >
-                خلیج فارس
-              </button>
-              <button
-                className="btn btn-outline-dark me-2 selected mb-2"
-                onClick={() => filterProduct("jewelery")}
-              >
-                دریای عمان
-              </button>
-            </div>
-          </div>
-        </div>
-        {filter.map((port) => {
-          return (
-            <div key={port.portId} className="col-md-3 mb-4">
-              <div className="card h-100 text-center p-4" key={port.portId}>
-                <img
-                  src="/assets/port.jpg"
-                  alt={port.portName}
-                  className="card-img-top"
-                />
-                <div className="card-body">
-                  <h5 className="card-title mb-0">{port.portName}</h5>
-                  <p className="card-text lead fw-bold">{port.portSerial}</p>
-                  <NavLink
-                    to={`/ports/${port.portId}`}
-                    className="btn btn-outline-dark"
-                  >
-                    اطلاعات بیشتر
-                  </NavLink>
-                </div>
+        {filter.length !== 0 && (
+          <div className="container buttons d-flex justify-content-center mb-5">
+            <div className="row">
+              <div className="col">
+                <button
+                  className="btn btn-outline-dark me-2 selected mb-2"
+                  onClick={() => setFilter(ports)}
+                >
+                  همه
+                </button>
+                <button
+                  className="btn btn-outline-dark me-2 selected mb-2"
+                  onClick={() => filterProduct("men's clothing")}
+                >
+                  دریای خزر
+                </button>
+                <button
+                  className="btn btn-outline-dark me-2 selected mb-2"
+                  onClick={() => filterProduct("women's clothing")}
+                >
+                  خلیج فارس
+                </button>
+                <button
+                  className="btn btn-outline-dark me-2 selected mb-2"
+                  onClick={() => filterProduct("jewelery")}
+                >
+                  دریای عمان
+                </button>
               </div>
             </div>
-          );
-        })}
+          </div>
+        )}
+        {filter.length !== 0 ? (
+          filter.map((port) => {
+            return (
+              <div key={port.portId} className="col-md-3 mb-4">
+                <div className="card h-100 text-center p-4" key={port.portId}>
+                  <img
+                    src="/assets/port.jpg"
+                    alt={port.portName}
+                    className="card-img-top"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title mb-0">{port.portName}</h5>
+                    <p className="card-text lead fw-bold">{port.portSerial}</p>
+                    <NavLink
+                      to={`/ports/${port.portId}`}
+                      className="btn btn-outline-dark"
+                    >
+                      اطلاعات بیشتر
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="text-center text-secondary">
+            موردی برای نمایش وجود ندارد
+          </div>
+        )}
       </>
     );
   };
 
   return (
-    <div className="container my-5 py-5">
+    <div className="container main_container my-5 py-5">
       <div className="row">
         <div className="col-12 mb-5">
           <h3 className="display-6 fw-bolder text-center dark-text">
