@@ -208,3 +208,17 @@ footer.footer {
 .form-control::placeholder { 
   color: #bebebe !important;
 }
+
+.custom-spinner {
+  border: 0.2rem solid #97a7bc; 
+  border-top-color: #062247;
+  border-left-color: #c8e2eb;
+  border-radius: 50%; /* Rounded shape */
+  animation: spin 1s linear infinite; /* Rotation animation */
+}
+
+/* Animation keyframes for the spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
