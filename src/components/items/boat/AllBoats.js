@@ -58,44 +58,42 @@ function Boats() {
   const ShowProducts = () => {
     return (
       <>
-        {filter.length !== 0 && (
-          <div className="container buttons d-flex justify-content-center mb-5">
-            <div className="row">
-              <div className="col">
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => setFilter(boat)}
-                >
-                  همه
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("ship")}
-                >
-                  ناوبر باری
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("women's clothing")}
-                >
-                  ناوبر نفتی
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("jewelery")}
-                >
-                  ناوبر تفریحی
-                </button>
-                <button
-                  className="btn btn-outline-dark me-2 selected mb-2"
-                  onClick={() => filterProduct("electronics")}
-                >
-                  ناوبر آب و هوا
-                </button>
-              </div>
+        <div className="container buttons d-flex justify-content-center mb-5">
+          <div className="row">
+            <div className="col">
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => setFilter(boat)}
+              >
+                همه
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("باری")}
+              >
+                ناوبر باری
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("ship")}
+              >
+                ناوبر نفتی
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("jewelery")}
+              >
+                ناوبر تفریحی
+              </button>
+              <button
+                className="btn btn-outline-dark me-2 selected mb-2"
+                onClick={() => filterProduct("electronics")}
+              >
+                ناوبر آب و هوا
+              </button>
             </div>
           </div>
-        )}
+        </div>
         {filter.length !== 0 ? (
           filter.map((vessel) => {
             return (
