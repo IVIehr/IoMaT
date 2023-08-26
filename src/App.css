@@ -88,13 +88,12 @@
   text-align: center;
 }
 footer.footer {
-  margin-top: 100px;
   background: #f2f2f28a;
 }
 
 .footer_nav{
   margin-top: 20px;
-  height: 120px;
+  height: 70px;
 }
 
 .footer_nav li {
@@ -141,6 +140,10 @@ footer.footer {
 
 .footer_social ul li a:hover {
   color: #5bc5e2;
+}
+
+.main_container{
+  min-height: 100vh;
 }
 
 /* go to top */
