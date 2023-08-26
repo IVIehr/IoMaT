@@ -1,37 +1,28 @@
 import React from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import useEditPort from "../../../hooks/port/useEditPort";
 
 const EditPort = ({ prevData, handleClose }) => {
   const { register, handleSubmit, reset } = useForm();
-  const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
+  const { mutate } = useEditPort();
 
-  const editPortService = async (data) => {
-    const boatData = { ...data, inTransit: false };
-    try {
-      await axios
-        .post("http://77.237.82.37:4041/vessel/add", boatData, {
-          // required patch service to update vessel
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.data.success) {
-            toast.success(res.data.message);
-            handleClose();
-          } else {
-            toast.error(res.data.message);
-          }
-        });
-    } catch (error) {
-      alert(error.message);
-    }
+  const removeEmptyFields = (data) => {
+    Object.keys(data).forEach((key) => {
+      if (data[key] === "" || data[key] == null) {
+        delete data[key];
+      }
+    });
+    return data;
   };
 
   const onSubmit = (data) => {
-    // editPortService(data);
+    const cleanData = removeEmptyFields(data);
+    mutate({
+      data: { ...cleanData, portId: prevData.portId },
+      successCallBack: () => {
+        handleClose();
+      },
+    });
     reset();
   };
 
@@ -53,40 +44,50 @@ const EditPort = ({ prevData, handleClose }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 text-end">
               <label htmlFor="portName" className="form-label">
-                نام بندر
+                نام
               </label>
               <input
                 type="text"
                 className="form-control text-secondary"
                 id="portName"
-                value={prevData.portName}
-                required
+                placeholder={prevData.portName}
                 {...register("portName")}
               />
             </div>
             <div className="mb-3 text-end">
-              <label htmlFor="portSerial" className="form-label">
-                سریال بندر
-              </label>
-              <input
-                type="text"
-                className="form-control text-secondary"
-                id="portSerial"
-                value={prevData.portSerial}
-                required
-                {...register("portSerial")}
-              />
-            </div>
-            <div className="mb-3 text-end">
               <label htmlFor="portType" className="form-label">
-                نوع بندر
+                نوع
               </label>
               <input
                 type="text"
                 className="form-control text-secondary"
                 id="portType"
-                value={prevData.portType}
+                placeholder={prevData.portType}
                 {...register("portType")}
+              />
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="portSerial" className="form-label">
+                شماره سریال
+              </label>
+              <input
+                type="text"
+                className="form-control text-secondary"
+                id="portSerial"
+                placeholder={prevData.portSerial}
+                {...register("portSerial")}
+              />
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="country" className="form-label">
+                کشور
+              </label>
+              <input
+                type="text"
+                className="form-control text-secondary"
+                id="country"
+                placeholder={prevData.country}
+                {...register("country")}
               />
             </div>
             <div className="mb-3 text-end">
@@ -96,19 +97,30 @@ const EditPort = ({ prevData, handleClose }) => {
                   type="text"
                   className="form-control text-secondary"
                   id="latitude"
-                  placeholder="latitude"
-                  value={prevData.latitude}
+                  placeholder={`latitude: ${prevData.latitude}`}
                   {...register("latitude")}
                 />
                 <input
                   type="text"
                   className="form-control text-secondary"
                   id="longitude"
-                  placeholder="longitude"
-                  value={prevData.longitude}
+                  placeholder={`longitude: ${prevData.longitude}`}
                   {...register("longitude")}
                 />
               </div>
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="about" className="form-label">
+                درباره
+              </label>
+              <textarea
+                type="text"
+                rows={5}
+                className="form-control text-secondary"
+                id="about"
+                placeholder={prevData.about}
+                {...register("about")}
+              />
             </div>
             <button type="submit" className="btn btn-dark w-100 my-4">
               تایید

@@ -34,7 +34,7 @@ const AddBoat = ({ handleClose }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 text-end">
               <label htmlFor="vesselName" className="form-label">
-                نام کشتی
+                نام
               </label>
               <input
                 type="text"
@@ -46,7 +46,7 @@ const AddBoat = ({ handleClose }) => {
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="vesselSerial" className="form-label">
-                سریال کشتی
+                شماره سریال
               </label>
               <input
                 type="text"
@@ -58,7 +58,7 @@ const AddBoat = ({ handleClose }) => {
             </div>
             <div className="mb-3 text-end">
               <label htmlFor="vesselType" className="form-label">
-                نوع کشتی
+                نوع
               </label>
               <input
                 type="text"
@@ -68,11 +68,34 @@ const AddBoat = ({ handleClose }) => {
               />
             </div>
             <div className="mb-3 text-end">
-              <label htmlFor="about" className="form-label">
-                درباره کشتی
+              <label htmlFor="vesselSize" className="form-label">
+                ابعاد
               </label>
               <input
                 type="text"
+                className="form-control"
+                id="vesselSize"
+                {...register("vesselSize")}
+              />
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="flag" className="form-label">
+                کشور
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="flag"
+                {...register("flag")}
+              />
+            </div>
+            <div className="mb-3 text-end">
+              <label htmlFor="about" className="form-label">
+                درباره
+              </label>
+              <textarea
+                type="text"
+                rows={5}
                 className="form-control"
                 id="about"
                 {...register("about")}

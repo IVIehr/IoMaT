@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 export default function useGetBoat({ vesselId }) {
-  const key = `vessel-${vesselId}`;
+  const key = `boat-${vesselId}`;
   const token = window.localStorage.getItem("AIS:ACCESS_TOKEN"); // Not be needed
 
   return useQuery(
