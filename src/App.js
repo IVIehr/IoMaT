@@ -2,7 +2,7 @@ import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Home from "./components/main/Home";
 import Navbar from "./components/main/Navbar";
 import Footer from "./components/main/Footer";
@@ -14,12 +14,22 @@ import Port from "./components/items/port/SinglePort";
 import About from "./components/about";
 import Cooperation from "./components/Cooperation";
 import { ToastContainer } from "react-toastify";
+import { useSetRecoilState } from "recoil";
+import { userState } from "./atom/user";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [queryClient] = useState(() => {
     return new QueryClient();
   });
+  const setHuman = useSetRecoilState(userState);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("AIS:ACCESS_TOKEN");
+    if (token) {
+      setHuman({ name: "Mehrnoosh" });
+    }
+  }, [window.localStorage]);
 
   return (
     <div className="app">

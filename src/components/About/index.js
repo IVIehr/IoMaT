@@ -1,14 +1,15 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../atom/user";
 
 const About = () => {
-  const userState = useSelector((userState) => userState.handleUser);
   const navigate = useNavigate();
+  const human = useRecoilValue(userState);
 
   const proceedTeaching = () => {
-    if (userState !== null) {
+    if (human) {
       navigate("/cooperation");
     } else {
       toast.warning("لطفا ابتدا وارد شوید");

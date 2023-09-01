@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import SearchBox from "./searchBoxBoat";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
 import AddBoat from "./addBoat";
 import useGetAllBoats from "../../../hooks/boat/useGetAllBoats";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../atom/user";
 
 function Boats() {
   const [boat, setBoat] = useState([]);
   const [filter, setFilter] = useState(boat);
   const [addBoat, setAddBoat] = useState(false);
-  const userState = useSelector((userState) => userState.handleUser);
+  const human = useRecoilValue(userState);
 
   const { data, isLoading } = useGetAllBoats();
 
@@ -47,14 +48,14 @@ function Boats() {
     setFilter(updatedList);
   };
 
-  const searchBoats = (result) =>{
-    if(result){
+  const searchBoats = (result) => {
+    if (result) {
       setFilter(result);
     }
-  }
+  };
 
   const handleNewBoat = () => {
-    if (userState !== null) {
+    if (human) {
       setAddBoat(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید");

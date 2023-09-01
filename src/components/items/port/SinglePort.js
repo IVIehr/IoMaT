@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { FaPencilAlt } from "react-icons/fa";
 import EditPort from "./editPort";
 import useGetPort from "../../../hooks/port/useGetPort";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../atom/user";
 
 function Port() {
   const { id } = useParams();
   const [port, setPort] = useState([]);
   const [editModal, setEditModal] = useState(false);
-  const userState = useSelector((userState) => userState.handleUser);
+  const human = useRecoilValue(userState);
+
   const { data, isLoading } = useGetPort({ portId: id });
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function Port() {
   };
 
   const handleEditPort = () => {
-    if (userState !== null) {
+    if (human) {
       // && access == "owner"
       setEditModal(true);
     } else {

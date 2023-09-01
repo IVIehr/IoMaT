@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
-import SearchBox from "./searchBoxPort";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
 import { AiOutlinePlus } from "react-icons/ai";
+import { userState } from "../../../atom/user";
+import SearchBox from "./searchBoxPort";
 import AddPort from "./addPort";
 import useGetAllPorts from "../../../hooks/port/useGetAllPorts";
 
@@ -12,7 +13,8 @@ function Ports() {
   const [ports, setports] = useState([]);
   const [filter, setFilter] = useState(ports);
   const [addPort, setAddPort] = useState(false);
-  const userState = useSelector((userState) => userState.handleUser);
+  const human = useRecoilValue(userState);
+
   const { data, isLoading } = useGetAllPorts();
 
   useEffect(() => {
@@ -42,7 +44,7 @@ function Ports() {
   };
 
   const handleNewPort = () => {
-    if (userState !== null) {
+    if (human) {
       setAddPort(true);
     } else {
       toast.info("لطفا ابتدا وارد شوید");

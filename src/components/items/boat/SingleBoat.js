@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { FaPencilAlt, FaSailboat } from "react-icons/fa";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../atom/user";
+import { FaPencilAlt } from "react-icons/fa";
 import { AiFillAlert } from "react-icons/ai";
 import { TiLocation } from "react-icons/ti";
 import { IoMdLocate } from "react-icons/io";
@@ -17,7 +18,8 @@ function Boat() {
   const [boat, setBoat] = useState([]);
   const [editModal, setEditModal] = useState(false);
   const [alert, setAlert] = useState(false);
-  const userState = useSelector((userState) => userState.handleUser);
+  const human = useRecoilValue(userState);
+
   const { data, isLoading } = useGetBoat({ vesselId: id });
 
   useEffect(() => {
@@ -45,7 +47,7 @@ function Boat() {
   };
 
   const handleEditBoat = () => {
-    if (userState !== null) {
+    if (human) {
       // && access == "owner"
       setEditModal(true);
     } else {
@@ -54,7 +56,7 @@ function Boat() {
   };
 
   const handleSendAlert = () => {
-    if (userState !== null) {
+    if (human) {
       // && access == "owner"
       setAlert(true);
     } else {
