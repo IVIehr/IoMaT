@@ -31,11 +31,22 @@ const AISMap = ({ locations }) => {
         iconSize: [30, 30],
         iconAnchor: [15, 15],
       });
-      L.marker(location.coordinates, { icon: customIcon })
-        .addTo(map)
-        .bindPopup(
-          `<strong>${location.name}</strong> at ${location.speed}/${location.course}.<br> Destination: <strong>${location.destination}</string>`
-        );
+      const marker = L.marker(location.coordinates, { icon: customIcon }).addTo(
+        map
+      );
+      const popup = L.popup().setContent(
+        `<strong>${location.name}</strong> at ${location.speed}/${location.course}.<br> Destination: <strong>${location.destination}</string>`
+      );
+
+      marker.on("mouseover", function () {
+        // Show the popup on hover
+        this.bindPopup(popup).openPopup();
+      });
+
+      marker.on("mouseout", function () {
+        // Hide the popup when the mouse leaves
+        this.closePopup();
+      });
     });
 
     return () => {
@@ -44,6 +55,6 @@ const AISMap = ({ locations }) => {
   }, [locations]);
 
   return <div id="ais-map" style={{ height: "100vh" }}></div>;
-}
+};
 
 export default AISMap;
