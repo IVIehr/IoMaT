@@ -34,6 +34,16 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
+                <button
+                  className="nav-link"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#sidebar"
+                  aria-controls="sidebar"
+                >
+                  پنل کاربر
+                </button>
+              </li>
+              <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="/">
                   نقشه
                 </NavLink>
@@ -60,9 +70,7 @@ const Navbar = () => {
                   <>
                     <div>
                       {/* Check if the user is logged in or not */}
-                      {human?.name !== null
-                        ? human?.name
-                        : human?.email}
+                      {human?.name !== null ? human?.name : human?.email}
                     </div>
                     <button
                       type="button"
@@ -84,6 +92,6 @@ const Navbar = () => {
       </nav>
     </div>
   );
-}
+};
 
 export default Navbar;

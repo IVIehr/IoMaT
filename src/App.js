@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useState, useEffect } from "react";
 import Home from "./components/main/Home";
+import Sidebar from "./components/main/SideBar";
 import Navbar from "./components/main/Navbar";
 import Footer from "./components/main/Footer";
 import NotFound from "./components/main/NotFound";
@@ -35,6 +36,7 @@ function App() {
     <div className="app">
       <QueryClientProvider client={queryClient}>
         <Router>
+          <Sidebar />
           <Navbar />
           <Routes>
             <Route exact path="/" element={<Home />} />
