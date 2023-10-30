@@ -22,6 +22,20 @@
   outline: 0 !important;
 }
 
+.panel-item {
+  padding: 10px;
+}
+.panel-item:hover,
+.panel-item:focus {
+  background-color: #ccc;
+}
+
+.panel-link,
+.panel-link:hover {
+  text-decoration: none;
+  color: #616161;
+}
+
 .card-img {
   width: unset;
   object-fit: cover;
