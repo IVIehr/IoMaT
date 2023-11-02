@@ -41,7 +41,7 @@ function Home() {
     <div className="main_container">
       <div className="hero">
         <div className="mt-4">
-          <AISMap locations={locations} />
+          <AISMap locations={locations} height="100vh"/>
         </div>
       </div>
     </div>
