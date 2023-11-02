@@ -29,7 +29,7 @@ const AddBoat = ({ handleClose }) => {
             }}
           ></button>
         </div>
-        <h5 className="login-header mb-4 text-center">افزودن کشتی</h5>
+        <h5 className="login-header mb-4 text-center">افزودن شناور</h5>
         <div className="modal-body ps-5 pe-5 pt-0">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 text-end">

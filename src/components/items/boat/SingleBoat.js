@@ -12,6 +12,18 @@ import { GiFishingBoat } from "react-icons/gi";
 import EditBoat from "./editBoat";
 import useGetBoat from "../../../hooks/boat/useGetBoat";
 import AlertToBoat from "./alertToBoat";
+import AISMap from "../../map";
+
+const locations = [
+  {
+    name: "Deneb leader [PA]",
+    speed: "16.2kn",
+    course: "129°",
+    coordinates: [26.3451, 52.5601],
+    destination: "Jp Yok",
+    type: "A",
+  },
+];
 
 function Boat() {
   const { id } = useParams();
@@ -69,7 +81,9 @@ function Boat() {
       <>
         <div className="col-md-6">
           <h2>{boat.vesselName}</h2>
-          <h5 className="text-uppercase text-black-50">نوع: {boat.vesselType}</h5>
+          <h5 className="text-uppercase text-black-50">
+            نوع: {boat.vesselType}
+          </h5>
           <h5 className="text-black-50">کشور: {boat.flag}</h5>
           <img
             src="/assets/vessel.jpg"
@@ -84,7 +98,7 @@ function Boat() {
         </div>
         <div className="col-md-6">
           <div className="border border-1 p-4">
-            <h3 className="my-5 text-center">سریال کشتی:{boat.vesselSerial}</h3>
+            <h3 className="my-3 text-center">سریال شناور:{boat.vesselSerial}</h3>
             <div className="d-flex flex-row justify-content-center">
               <button className="btn btn-dark mx-2" onClick={handleEditBoat}>
                 ویرایش جزئیات <FaPencilAlt />
@@ -110,8 +124,7 @@ function Boat() {
               )}
             </div>
             <div
-              className="d-flex justify-content-between text-primary"
-              style={{ marginTop: "4em" }}
+              className="d-flex justify-content-between text-primary mt-5"
             >
               <TiLocation />
               <div className="d-flex">
@@ -129,6 +142,9 @@ function Boat() {
                 تاریخ حرکت
               </span>
             </div>
+          </div>
+          <div className="mt-4">
+            <AISMap locations={locations} height="50vh" />
           </div>
         </div>
       </>

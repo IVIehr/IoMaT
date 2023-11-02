@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import L from "leaflet";
 import "../../styles/leaflet.css";
 
-const AISMap = ({ locations }) => {
+const AISMap = ({ locations, height }) => {
   useEffect(() => {
     const map = L.map("ais-map").setView(locations[0].coordinates, 8);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
@@ -35,7 +35,7 @@ const AISMap = ({ locations }) => {
         map
       );
       const popup = L.popup().setContent(
-        `<strong>${location.name}</strong> at ${location.speed}/${location.course}.<br> Destination: <strong>${location.destination}</string>`
+        `شناور <strong>${location.name}</strong> در ${location.speed}/${location.course}.<br> مقصد: <strong>${location.destination}</string>`
       );
 
       marker.on("mouseover", function () {
@@ -54,7 +54,7 @@ const AISMap = ({ locations }) => {
     };
   }, [locations]);
 
-  return <div id="ais-map" style={{ height: "100vh" }}></div>;
+  return <div id="ais-map" style={{ height }}></div>;
 };
 
 export default AISMap;
