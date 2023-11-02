@@ -14,6 +14,7 @@ import Footer from "./components/main/Footer";
 import { useRecoilState } from "recoil";
 import { userState } from "./atom/user";
 import useGetMe from "./hooks/getme/useGetMe";
+import Users from "./components/users";
 
 function Start() {
   const [human, setHuman] = useRecoilState(userState);
@@ -38,6 +39,7 @@ function Start() {
         <Route path="/ports" element={<Ports />} />
         <Route path="/ports/:id" element={<Port />} />
         <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
         <Route path="/cooperation" element={<Cooperation />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route to="/not-found" />

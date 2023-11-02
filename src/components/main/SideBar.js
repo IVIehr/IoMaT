@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { userState } from "../../atom/user";
+import { useRecoilValue } from "recoil";
 import { AiOutlineHome, AiOutlineAlert } from "react-icons/ai";
 import { HiOutlineUsers } from "react-icons/hi";
 import { PiBoat } from "react-icons/pi";
@@ -7,6 +9,8 @@ import { SiPortainer } from "react-icons/si";
 import UserInfo from "./UserInfo";
 
 const Sidebar = () => {
+  const human = useRecoilValue(userState);
+
   const handleItemClick = () => {
     const closeButton = document.getElementById("user-panel-close");
     if (closeButton) {
@@ -48,18 +52,21 @@ const Sidebar = () => {
               <span className="mx-3">داشبورد</span>
             </NavLink>
           </li>
-          <li className="panel-item">
-            <NavLink
-              className="panel-link"
-              aria-current="page"
-              to="/"
-              target="_blank"
-              onClick={handleItemClick}
-            >
-              <HiOutlineUsers />
-              <span className="mx-3">اعضا</span>
-            </NavLink>
-          </li>
+          {human && human.info && human.info.data.role === "ADMIN" && (
+            <li className="panel-item">
+              <NavLink
+                className="panel-link"
+                aria-current="page"
+                to="/users"
+                target="_blank"
+                onClick={handleItemClick}
+              >
+                <HiOutlineUsers />
+                <span className="mx-3">تایید کاربران</span>
+              </NavLink>
+            </li>
+          )}
+
           <li className="panel-item">
             <NavLink
               className="panel-link"
