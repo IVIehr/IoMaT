@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useRecoilValue } from "recoil";
 import { AiOutlinePlus } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import { userState } from "../../../atom/user";
 import SearchBox from "./searchBoxPort";
 import AddPort from "./addPort";
@@ -114,6 +115,9 @@ function Ports() {
                     >
                       اطلاعات بیشتر
                     </NavLink>
+                    <button className="btn btn-outline-danger ms-2">
+                      <AiFillDelete />
+                    </button>
                   </div>
                 </div>
               </div>

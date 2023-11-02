@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import SearchBox from "./searchBoxBoat";
 import { toast } from "react-toastify";
 import { AiOutlinePlus } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import AddBoat from "./addBoat";
 import useGetAllBoats from "../../../hooks/boat/useGetAllBoats";
 import { useRecoilValue } from "recoil";
@@ -125,6 +126,9 @@ function Boats() {
                     >
                       اطلاعات بیشتر
                     </NavLink>
+                    <button className="btn btn-outline-danger ms-2">
+                      <AiFillDelete />
+                    </button>
                   </div>
                 </div>
               </div>
