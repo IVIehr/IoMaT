@@ -35,7 +35,7 @@ const AISMap = ({ locations, height }) => {
         map
       );
       const popup = L.popup().setContent(
-        `<strong>${location.name}</strong> at ${location.speed}/${location.course}.<br> Destination: <strong>${location.destination}</string>`
+        `شناور <strong>${location.name}</strong> در ${location.speed}/${location.course}.<br> مقصد: <strong>${location.destination}</string>`
       );
 
       marker.on("mouseover", function () {
