@@ -4,6 +4,7 @@ import { AiOutlineHome, AiOutlineAlert } from "react-icons/ai";
 import { HiOutlineUsers } from "react-icons/hi";
 import { PiBoat } from "react-icons/pi";
 import { SiPortainer } from "react-icons/si";
+import UserInfo from "./UserInfo";
 
 const Sidebar = () => {
   const handleItemClick = () => {
@@ -32,6 +33,9 @@ const Sidebar = () => {
         ></button>
       </div>
       <div className="offcanvas-body">
+        <div className="border-bottom pb-3">
+          <UserInfo />
+        </div>
         <ul className="list-unstyled mx-auto mb-2 mb-lg-0">
           <li className="panel-item">
             <NavLink

@@ -21,7 +21,7 @@ export default function useLogin() {
           successCallBack();
           toast.success(response.message);
         } else {
-          toast.error(response.message);
+          toast.error(response.error);
         }
       },
       onError: (error) => {

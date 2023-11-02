@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useLogin from "../../hooks/login/useLogin";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../../atom/user";
+import useGetMe from "../../hooks/getme/useGetMe";
 
 function Login() {
   const [modal, setModal] = useState(false);
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const setHuman = useSetRecoilState(userState);
+  const { data: info, refetch: refetchGetInfo } = useGetMe();
 
   const { mutate } = useLogin();
 
@@ -16,11 +19,18 @@ function Login() {
       data,
       successCallBack: () => {
         setModal(false);
-        setHuman({ name: "Mehrnoosh" });
+        setIsLoginSuccessful(true);
       },
     });
     reset();
   };
+
+  useEffect(() => {
+    if (isLoginSuccessful) {
+      refetchGetInfo();
+      setHuman(info);
+    }
+  }, [isLoginSuccessful]);
 
   return (
     <>
