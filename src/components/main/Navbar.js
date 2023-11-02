@@ -4,6 +4,7 @@ import Login from "../login";
 import Signup from "../signup";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atom/user";
+import { BiUser } from "react-icons/bi";
 
 const Navbar = () => {
   const [human, setHuman] = useRecoilState(userState);
@@ -55,15 +56,19 @@ const Navbar = () => {
               </li>
             </ul>
             <div className="buttons d-flex">
-              <div className="btn d-flex align-items-center">
+              <div className="btn d-flex align-items-center p-0">
                 {human ? (
                   <>
-                    <div>
-                      {/* Check if the user is logged in or not */}
-                      {human?.name !== null
-                        ? human?.name
-                        : human?.email}
-                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-outline-dark ms-2"
+                      data-bs-toggle="offcanvas"
+                      data-bs-target="#sidebar"
+                      aria-controls="sidebar"
+                    >
+                      <BiUser />
+                      <span className="mx-1"> پنل کاربری</span>
+                    </button>
                     <button
                       type="button"
                       className="btn btn-outline-dark ms-2"
@@ -84,6 +89,6 @@ const Navbar = () => {
       </nav>
     </div>
   );
-}
+};
 
 export default Navbar;
