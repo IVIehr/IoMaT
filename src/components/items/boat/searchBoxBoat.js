@@ -32,7 +32,7 @@ const SearchBox = ({ handleResult }) => {
         type="text"
         id="searchInput"
         className="form-control"
-        placeholder={"جستجوی کشتی..."}
+        placeholder={"جستجوی شناور..."}
         aria-label="Recipient's username"
         onChange={(e) => handleSearch(e.currentTarget.value)}
         aria-describedby="button-addon2"

@@ -144,7 +144,7 @@ function Boats() {
       <div className="row">
         <div className="col-12 mb-5">
           <h3 className="display-6 fw-bolder text-center dark-text">
-            لیست کشتی ها
+            لیست شناور ها
           </h3>
           <hr />
           <div className="d-flex flex-row align-items-center justify-content-between mt-4">
@@ -152,7 +152,7 @@ function Boats() {
               <SearchBox handleResult={searchBoats} />
             </div>
             <button className="btn btn-dark" onClick={handleNewBoat}>
-              افزودن کشتی جدید <AiOutlinePlus />
+              افزودن شناور جدید <AiOutlinePlus />
             </button>
             {addBoat && <AddBoat handleClose={() => setAddBoat(false)} />}
           </div>

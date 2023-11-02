@@ -41,7 +41,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/boats">
-                  کشتی ها
+                  شناور ها
                 </NavLink>
               </li>
               <li className="nav-item">

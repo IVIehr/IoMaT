@@ -98,7 +98,7 @@ function Boat() {
         </div>
         <div className="col-md-6">
           <div className="border border-1 p-4">
-            <h3 className="my-3 text-center">سریال کشتی:{boat.vesselSerial}</h3>
+            <h3 className="my-3 text-center">سریال شناور:{boat.vesselSerial}</h3>
             <div className="d-flex flex-row justify-content-center">
               <button className="btn btn-dark mx-2" onClick={handleEditBoat}>
                 ویرایش جزئیات <FaPencilAlt />
