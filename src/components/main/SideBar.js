@@ -58,7 +58,6 @@ const Sidebar = () => {
                 className="panel-link"
                 aria-current="page"
                 to="/users"
-                target="_blank"
                 onClick={handleItemClick}
               >
                 <HiOutlineUsers />
@@ -71,7 +70,6 @@ const Sidebar = () => {
             <NavLink
               className="panel-link"
               to="/boats"
-              target="_blank"
               onClick={handleItemClick}
             >
               <PiBoat />
@@ -82,7 +80,6 @@ const Sidebar = () => {
             <NavLink
               className="panel-link"
               to="/ports"
-              target="_blank"
               onClick={handleItemClick}
             >
               <SiPortainer />
@@ -92,8 +89,7 @@ const Sidebar = () => {
           <li className="panel-item">
             <NavLink
               className="panel-link"
-              to="/ports"
-              target="_blank"
+              to="/"
               onClick={handleItemClick}
             >
               <AiOutlineAlert />
